@@ -20,7 +20,7 @@
     a { color: #81a5c4; text-decoration: none; }
     a:hover { color: #fff; text-decoration: underline; }
 
-    /* Barra superior pegada completamente arriba */
+    /* Barra superior */
     .steam-header-bar {
       width: 100%;
       background: linear-gradient(to bottom, #600000, #400000);
@@ -39,7 +39,6 @@
     .steam-header-bar a { color: #d8d8d8; display: flex; align-items: center; gap: 6px; }
     .steam-header-bar a:hover { color: #fff; text-decoration: none; }
     
-    /* Estilos de los íconos */
     .header-icon {
       width: 14px;
       height: 14px;
@@ -102,7 +101,62 @@
       font-size: 13px;
     }
     .download-link-btn:hover { background-color: #ff6a00; color: #fff; text-decoration: none; }
-    .download-preview-img { width: 100%; max-width: 500px; height: auto; display: block; margin-top: 10px; }
+
+    /* Estilos de la Galería estilo Steam */
+    .steam-gallery {
+      background: #000;
+      border: 1px solid #2a2a2a;
+      width: 100%;
+      max-width: 560px;
+      margin-top: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+    .gallery-main {
+      width: 100%;
+      height: 310px;
+      background: #050505;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .gallery-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .gallery-thumbnails {
+      display: flex;
+      gap: 6px;
+      padding: 8px;
+      background: #121619;
+      overflow-x: auto;
+      border-top: 1px solid #222;
+    }
+    .gallery-thumbnails::-webkit-scrollbar {
+      height: 6px;
+    }
+    .gallery-thumbnails::-webkit-scrollbar-thumb {
+      background: #333;
+      border-radius: 3px;
+    }
+    .thumb {
+      width: 90px;
+      height: 52px;
+      object-fit: cover;
+      cursor: pointer;
+      opacity: 0.5;
+      border: 2px solid transparent;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+    .thumb:hover {
+      opacity: 0.8;
+    }
+    .thumb.active {
+      opacity: 1;
+      border-color: #67c1f5;
+    }
 
     .sideBox { margin-bottom: 25px; border-bottom: 1px solid #333; padding-bottom: 20px; }
     .sideBox:last-child { border-bottom: none; }
@@ -128,9 +182,10 @@
     }
     .btn-steam:hover { background: #800000; color: #fff; text-decoration: none; }
 
-    .comic-box img { width: 100%; height: auto; border: 1px solid #333; margin-bottom: 8px; display: block; }
-    .comic-link { color: #ffff00; font-size: 13px; font-weight: bold; }
-    .comic-link:hover { color: #fff; text-decoration: underline; }
+    .comic-box img, .mod-box img { width: 100%; height: auto; border: 1px solid #333; margin-bottom: 8px; display: block; }
+    .comic-link, .mod-link { color: #ffff00; font-size: 13px; font-weight: bold; }
+    .comic-link:hover, .mod-link:hover { color: #fff; text-decoration: underline; }
+    .mod-box p { font-size: 12px; color: #aaa; margin: 5px 0 10px 0; line-height: 1.4; }
   </style>
 </head>
 <body>
@@ -203,18 +258,17 @@
           <div class="download-card">
             <h2 data-i18n="PatchTitle">Parche N°56556</h2>
             <a href="#" target="_blank" class="download-link-btn" data-i18n="PatchBtn">ENLACE DE DESCARGA</a>
-            <div>
-              <img src="https://via.placeholder.com/600x300/222222/e15b00?text=IMAGENES+PARCHE" alt="Imágenes Parche" class="download-preview-img">
-            </div>
-          </div>
-
-          <hr class="post-divider">
-
-          <div class="download-card">
-            <h2 data-i18n="UpdateTitle">ACTUALIZACIÓN N°56556</h2>
-            <a href="#" target="_blank" class="download-link-btn" data-i18n="UpdateBtn">ENLACE DE DESCARGA</a>
-            <div>
-              <img src="https://via.placeholder.com/600x300/222222/e15b00?text=IMAGENES+ACTUALIZACION" alt="Imágenes Actualización" class="download-preview-img">
+            
+            <div class="steam-gallery">
+              <div class="gallery-main">
+                <img id="mainDisplay1" src="https://images.steamusercontent.com/ugc/1005898835824970348/1A334B8E6A6D172E9DCD9E15B13D5CD4DFE3C8B4/" alt="Vista previa">
+              </div>
+              <div class="gallery-thumbnails">
+                <img class="thumb active" src="https://images.steamusercontent.com/ugc/1005898835824970348/1A334B8E6A6D172E9DCD9E15B13D5CD4DFE3C8B4/" onclick="switchMedia(this, 'mainDisplay1')" alt="Img 1">
+                <img class="thumb" src="https://images.steamusercontent.com/ugc/1005898835824970420/83FA38D1C2818A1900F3124C4CA89C57D2C04B1D/" onclick="switchMedia(this, 'mainDisplay1')" alt="Img 2">
+                <img class="thumb" src="https://images.steamusercontent.com/ugc/1005898835824970500/2A7B8E92723A25D7EFA4B1720D9D8103A3C910B8/" onclick="switchMedia(this, 'mainDisplay1')" alt="Img 3">
+                <img class="thumb" src="https://images.steamusercontent.com/ugc/1005898835824970610/3B1828B10156C6C82B57B2F6E1C44F0744655B1B/" onclick="switchMedia(this, 'mainDisplay1')" alt="Img 4">
+              </div>
             </div>
           </div>
         </div>
@@ -242,6 +296,18 @@
             Leer Cómic 'The Sacrifice'
           </a>
         </div>
+
+        <!-- Sección: MOD Latino con Imagen Directa de Nexus -->
+        <div class="sideBox mod-box">
+          <h1 data-i18n="SideModTitle">MOD Doblaje Latino</h1>
+          <a href="https://www.nexusmods.com/left4dead2/mods/115" target="_blank">
+            <img src="https://staticdelivery.nexusmods.com/mods/195/images/headers/115_1706769656.jpg" alt="Mod Doblaje Latino Header">
+          </a>
+          <p data-i18n="SideModDesc">Disfruta de Left 4 Dead 2 con doblaje en español latino completo realizado por la comunidad.</p>
+          <a href="https://www.nexusmods.com/left4dead2/mods/115" target="_blank" class="mod-link" data-i18n="SideModLink">
+            Ver en Nexus Mods
+          </a>
+        </div>
       </div>
 
     </div>
@@ -250,6 +316,15 @@
 </div>
 
 <script>
+  function switchMedia(element, targetDisplayId) {
+    document.getElementById(targetDisplayId).src = element.src;
+    
+    const parentThumbnails = element.parentElement;
+    parentThumbnails.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+    
+    element.classList.add('active');
+  }
+
   const I18N = {
     spanish: {
       SelectLang: "Elegir idioma:",
@@ -264,12 +339,13 @@
       Post2List: "<li>Opción de Partida Rápida para preferir Servidores Oficiales o Cualquiera.</li><li>Interfaz y subtítulos agregados en vietnamita.</li><li>Límite de comandos por segundo aumentado para corregir falsas desconexiones.</li><li>Corrección de color ajustada en varios mapas.</li>",
       PatchTitle: "Parche N°56556",
       PatchBtn: "ENLACE DE DESCARGA",
-      UpdateTitle: "ACTUALIZACIÓN N°56556",
-      UpdateBtn: "ENLACE DE DESCARGA",
       SideComicTitle: "Cómic",
       SideComicLink: "Leer Cómic 'The Sacrifice'",
       SidePlatformInfo: "En PC",
-      SideBtnSteam: "CÓMPRALO AHORA EN STEAM"
+      SideBtnSteam: "CÓMPRALO AHORA EN STEAM",
+      SideModTitle: "MOD Doblaje Latino",
+      SideModDesc: "Disfruta de Left 4 Dead 2 con doblaje en español latino completo realizado por la comunidad.",
+      SideModLink: "Ver en Nexus Mods"
     },
     english: {
       SelectLang: "Choose language:",
@@ -284,12 +360,13 @@
       Post2List: "<li>Quick Match option for all modes allows players to prefer 'Official Servers Only' or 'Any Servers'.</li><li>Added localized UI and subtitles for Vietnamese.</li><li>Increased string commands per second limit to fix false disconnects.</li><li>Fixed color correction for some maps.</li>",
       PatchTitle: "Patch N°56556",
       PatchBtn: "DOWNLOAD LINK",
-      UpdateTitle: "UPDATE N°56556",
-      UpdateBtn: "DOWNLOAD LINK",
       SideComicTitle: "Comic",
       SideComicLink: "Read The Sacrifice Comic",
       SidePlatformInfo: "On PC",
-      SideBtnSteam: "GET IT NOW ON STEAM"
+      SideBtnSteam: "GET IT NOW ON STEAM",
+      SideModTitle: "Latin Dub MOD",
+      SideModDesc: "Enjoy Left 4 Dead 2 with full Latin Spanish dubbing made by the community.",
+      SideModLink: "View on Nexus Mods"
     }
   };
 
