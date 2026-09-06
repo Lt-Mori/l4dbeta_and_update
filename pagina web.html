@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Sitio Web - Estilo L4D</title>
+  <style>
+    /* ESTILO DEL FONDO PRINCIPAL Y LATERALES */
+    body { 
+      background-color: #000000; 
+      background-image: url('https://i.imgur.com/FxiV5jv.jpeg'); 
+      background-repeat: no-repeat;
+      background-position: center bottom;
+      background-attachment: fixed;
+      color: #cccccc; 
+      font-family: Arial, sans-serif; 
+      margin: 0; 
+      padding: 0; 
+    }
+
+    a { color: #81a5c4; text-decoration: none; }
+    a:hover { color: #ffffff; text-decoration: underline; }
+    
+    /* CONTENEDOR CENTRAL */
+    #centerpage { width: 960px; margin: 0 auto; text-align: left; }
+    #pageContainer { background-color: #161616; padding: 20px; border: 1px solid #333; }
+    
+    /* BARRA SUPERIOR SOBRE EL BANNER */
+    .steam-header-bar {
+      background-color: #5a0000;
+      background: linear-gradient(to bottom, #600000, #400000);
+      border-bottom: 1px solid #2a0000;
+      padding: 6px 15px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 15px;
+      font-size: 11px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .steam-header-bar a { color: #d8d8d8; display: flex; align-items: center; gap: 5px; }
+    .steam-header-bar a:hover { color: #ffffff; text-decoration: none; }
+    .steam-header-bar .valve-logo {
+      border: 1px solid #ff0000;
+      color: #ff0000;
+      padding: 0 4px;
+      font-family: Impact, "Arial Black", sans-serif;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    /* BANNER PRINCIPAL */
+    #banner { width: 100%; height: 180px; overflow: hidden; background-color: #000; text-align: center; }
+    #banner img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* BARRA DE IDIOMA */
+    .top-bar { background-color: #111; padding: 8px 15px; border-bottom: 1px solid #333; display: flex; justify-content: space-between; align-items: center; }
+    .lang-select select { background-color: #222; color: #fff; border: 1px solid #444; padding: 3px 8px; }
+    
+    /* PESTAÑAS (NAV) */
+    nav.tabs { background-color: #1c1c1c; border-bottom: 2px solid #e15b00; padding: 10px 15px; }
+    nav.tabs button { 
+      background: none; border: none; color: #fff; font-weight: bold; 
+      margin-right: 20px; text-transform: uppercase; font-size: 14px; cursor: pointer; 
+    }
+    nav.tabs button.active, nav.tabs button:hover { color: #e15b00; }
+
+    /* LAYOUT Y COLUMNAS */
+    .content-wrapper { display: flex; margin-top: 20px; gap: 20px; }
+    #leftContainer { flex: 1; }
+    #rightContainer { width: 340px; flex-shrink: 0; }
+
+    /* CONTROL DE CONTENIDO DE PESTAÑAS */
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* ESTILO DE LOS POSTS Y NOTICIAS */
+    .blogpost { margin-bottom: 20px; padding-bottom: 5px; }
+    .blogpost h1 { font-size: 20px; color: #e13b00; margin: 0 0 4px 0; font-weight: bold; }
+    .blogpost h1 a { color: #e13b00; }
+    .blogpost h1 a:hover { color: #ff5522; text-decoration: underline; }
+    .blogpost h2 { font-size: 13px; color: #7f7f7f; margin: 0 0 15px 0; font-weight: normal; }
+    .blogpost p { line-height: 1.5; color: #c4c4c4; font-size: 14px; margin-bottom: 12px; }
+    .blogpost ul { color: #c4c4c4; font-size: 14px; margin-top: 5px; padding-left: 20px; line-height: 1.6; }
+    
+    /* LÍNEA SEPARADORA */
+    .post-divider { border: 0; height: 1px; background: #333333; margin: 25px 0; }
+
+    /* BLOQUE DE DESCARGA (SIN BORDES) */
+    .download-card {
+      background: none;
+      border: none;
+      padding: 0;
+      margin-bottom: 25px;
+    }
+    .download-card h2 {
+      color: #e15b00;
+      font-size: 20px;
+      margin: 0 0 10px 0;
+      font-weight: bold;
+    }
+    .download-link-btn {
+      display: inline-block;
+      background-color: #e15b00;
+      color: #ffffff;
+      padding: 10px 18px;
+      font-weight: bold;
+      border-radius: 3px;
+      margin: 10px 0 15px 0;
+      font-size: 13px;
+    }
+    .download-link-btn:hover { background-color: #ff6a00; color: #ffffff; text-decoration: none; }
+    .download-preview-img {
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+      border: none;
+      display: block;
+      margin-top: 10px;
+    }
+
+    /* COMENTARIOS */
+    .comments-section { margin-top: 25px; background-color: #121212; padding: 15px; border: 1px solid #282828; }
+    .comments-section h3 { color: #e15b00; margin: 0 0 15px 0; font-size: 16px; border-bottom: 1px solid #333; padding-bottom: 5px; }
+    
+    .comment-form { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+    .comment-form input, .comment-form textarea {
+      background-color: #1a1a1a;
+      border: 1px solid #333;
+      color: #fff;
+      padding: 8px;
+      font-family: inherit;
+      font-size: 13px;
+    }
+    .comment-form input:focus, .comment-form textarea:focus { outline: 1px solid #e15b00; }
+    .comment-form button {
+      align-self: flex-start;
+      background-color: #e15b00;
+      color: #fff;
+      border: none;
+      padding: 8px 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .comment-form button:hover { background-color: #ff6a00; }
+
+    .comments-list { display: flex; flex-direction: column; gap: 12px; }
+    .single-comment { background-color: #181818; border: 1px solid #2a2a2a; padding: 10px; }
+    .comment-author { color: #e15b00; font-weight: bold; font-size: 12px; }
+    .comment-date { color: #666; font-size: 10px; margin-left: 8px; }
+    .comment-text { color: #ccc; font-size: 13px; margin-top: 5px; }
+
+    /* COLUMNA DERECHA */
+    .sideBox { margin-bottom: 25px; border-bottom: 1px solid #333; padding-bottom: 20px; }
+    .sideBox:last-child { border-bottom: none; }
+    .sideBox h1 { font-size: 16px; color: #e15b00; margin: 0 0 10px 0; }
+
+    /* WIDGET STEAM */
+    .steam-widget { text-align: center; }
+    .players-online { color: #cc2200; font-size: 17px; font-weight: normal; margin-bottom: 15px; }
+    .widget-body { display: flex; align-items: center; justify-content: space-between; gap: 15px; }
+    .box-art { width: 120px; height: auto; object-fit: contain; }
+    
+    .widget-details { flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .platform-info { font-size: 13px; color: #666644; margin-bottom: 10px; }
+    .btn-steam {
+      display: block;
+      width: 100%;
+      background-color: #5d0000;
+      color: #ffffff;
+      font-weight: bold;
+      font-size: 12px;
+      padding: 10px 5px;
+      text-align: center;
+      border: 1px solid #aa0000;
+      text-transform: uppercase;
+      box-sizing: border-box;
+    }
+    .btn-steam:hover { background-color: #800000; color: #fff; text-decoration: none; }
+    
+    .original-l4d-link { font-size: 12px; color: #666644; margin-top: 10px; }
+    .original-l4d-link a { color: #cccc00; text-decoration: none; }
+    .original-l4d-link a:hover { text-decoration: underline; }
+
+    /* SECCIÓN CÓMIC */
+    .comic-box img { width: 100%; height: auto; border: 1px solid #333; margin-bottom: 8px; display: block; }
+    .comic-link { color: #ffff00; font-size: 13px; font-weight: bold; text-decoration: none; }
+    .comic-link:hover { color: #ffffff; text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<div id="centerpage">
+  
+  <div class="steam-header-bar">
+    <a href="https://store.steampowered.com/app/500/Left_4_Dead/" target="_blank">GET IT NOW ON STEAM</a>
+    <a href="http://youtube.com/@L4D1CommunityTeam" target="_blank">YOUTUBE</a>
+    <span class="valve-logo">VALVE</span>
+  </div>
+
+  <div id="banner">
+    <img src="https://via.placeholder.com/960x180/222222/e15b00?text=BANNER+IMAGEN" alt="Banner">
+  </div>
+
+  <div class="top-bar">
+    <span style="font-size: 12px; color: #888;" id="txt_select_lang">Elegir idioma:</span>
+    <div class="lang-select">
+      <select id="lang" onchange="changeLanguage(this.value)">
+        <option value="spanish">Español</option>
+        <option value="english">English</option>
+        <option value="latino">Español Latino</option>
+        <option value="portuguese">Português</option>
+      </select>
+    </div>
+  </div>
+
+  <nav class="tabs">
+    <button class="tab-btn active" id="btn_tab_Blog" onclick="switchTab('Blog', this)">Blog</button>
+    <button class="tab-btn" id="btn_tab_downloads" onclick="switchTab('descarga', this)">Descargas</button>
+    <button class="tab-btn" id="btn_tab_discussions" onclick="switchTab('discusiones', this)">Discusiones</button>
+  </nav>
+
+  <div id="pageContainer">
+    <div class="content-wrapper">
+      
+      <div id="leftContainer">
+        
+        <div id="Blog" class="tab-content active">
+
+          <div class="blogpost">
+            <h1><a href="#" id="post1_title">Left 4 Dead - Actualización</a></h1>
+            <h2 id="post1_date">6 de mayo de 2026 - Equipo L4D</h2>
+            <p id="post1_content">Se ha lanzado una actualización para Left 4 Dead: Se corrigieron varios errores que podían usarse para bloquear servidores o jugadores remotos.</p>
+          </div>
+
+          <hr class="post-divider">
+
+          <div class="blogpost">
+            <h1><a href="#" id="post2_title">Left 4 Dead 2 - Actualización</a></h1>
+            <h2 id="post2_date">18 de febrero de 2021 - Equipo L4D</h2>
+            <p id="post2_content">Se ha lanzado una actualización para Left 4 Dead 2.</p>
+            <ul id="post2_list">
+              <li>Opción de Partida Rápida para preferir Servidores Oficiales o Cualquiera.</li>
+              <li>Interfaz y subtítulos agregados en vietnamita.</li>
+              <li>Límite de comandos por segundo aumentado para corregir falsas desconexiones.</li>
+              <li>Corrección de color ajustada en varios mapas.</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div id="descarga" class="tab-content">
+          
+          <div class="download-card">
+            <h2 id="patch_title">Parche N°56556</h2>
+            <a href="AQUI_PEGA_TU_ENLACE_PARCHE" target="_blank" class="download-link-btn" id="patch_btn_label">
+              ENLACE DE DESCARGA
+            </a>
+            <div>
+              <img src="https://via.placeholder.com/600x300/222222/e15b00?text=IMAGENES+PARCHE" alt="Imágenes Parche" class="download-preview-img">
+            </div>
+          </div>
+
+          <hr class="post-divider">
+
+          <div class="download-card">
+            <h2 id="update_title">ACTUALIZACIÓN N°56556</h2>
+            <a href="AQUI_PEGA_TU_ENLACE_ACTUALIZACION" target="_blank" class="download-link-btn" id="update_btn_label">
+              ENLACE DE DESCARGA
+            </a>
+            <div>
+              <img src="https://via.placeholder.com/600x300/222222/e15b00?text=IMAGENES+ACTUALIZACION" alt="Imágenes Actualización" class="download-preview-img">
+            </div>
+          </div>
+
+        </div>
+
+        <div id="discusiones" class="tab-content">
+          <div class="blogpost">
+            <h1 id="disc_title">Foro de Discusiones</h1>
+            <h2 id="disc_subtitle">SOPORTE Y DETALLES TÉCNICOS</h2>
+            <p id="disc_text">A continuación, puedes plantear tus dudas, reportar fallos o dejar tus impresiones sobre el juego e instalación.</p>
+          </div>
+
+          <div class="comments-section">
+            <h3 id="disc_comments_header">Comentarios y Discusión</h3>
+            
+            <form class="comment-form" onsubmit="addComment(event)">
+              <input type="text" id="authorName" placeholder="Tu nombre / Nickname" required>
+              <textarea id="commentText" rows="3" placeholder="Escribe tu mensaje o consulta..." required></textarea>
+              <button type="submit" id="disc_btn_submit">Publicar Comentario</button>
+            </form>
+
+            <div class="comments-list" id="commentsList">
+              <div class="single-comment">
+                <span class="comment-author">Survivor_99</span>
+                <span class="comment-date">5 DE SEPTIEMBRE, 2026</span>
+                <div class="comment-text">¿Alguien sabe si el parche funciona en Windows 11 sin problemas de compatibilidad?</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div id="rightContainer">
+        
+        <div class="sideBox steam-widget">
+          <div class="players-online" id="side_players_online">40100 In-game now on Steam</div>
+          
+          <div class="widget-body">
+            <img class="box-art" src="https://i.imgur.com/4HkEJQ9.png" alt="Left 4 Dead 2">
+
+            <div class="widget-details">
+              <div class="platform-info" id="side_platform_info">On PC</div>
+              
+              <a href="https://store.steampowered.com/app/500/Left_4_Dead/" target="_blank" class="btn-steam" id="side_btn_steam">
+                GET IT NOW ON STEAM
+              </a>
+
+              <div class="original-l4d-link" id="side_original_l4d">
+                or the original <a href="https://store.steampowered.com/app/500/Left_4_Dead/" target="_blank">Left 4 Dead</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sideBox comic-box">
+          <h1 id="side_comic_title">Comic</h1>
+          <a href="https://www.l4d.com/comic/" target="_blank">
+            <img src="https://i.imgur.com/poT9j5u.jpeg" alt="The Sacrifice Comic">
+          </a>
+          <a href="https://www.l4d.com/comic/" target="_blank" class="comic-link" id="side_comic_link">
+            Read The Sacrifice Comic
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const KeyValues = {
+    "lang": {
+      "spanish": {
+        "SelectLang": "Elegir idioma:",
+        "TabBlog": "Blog",
+        "TabDownloads": "Descargas",
+        "TabDiscussions": "Discusiones",
+        
+        "Post1Title": "Left 4 Dead - Actualización",
+        "Post1Date": "6 de mayo de 2026 - Equipo L4D",
+        "Post1Content": "Se ha lanzado una actualización para Left 4 Dead: Se corrigieron varios errores que podían usarse para bloquear servidores o jugadores remotos.",
+        
+        "Post2Title": "Left 4 Dead 2 - Actualización",
+        "Post2Date": "18 de febrero de 2021 - Equipo L4D",
+        "Post2Content": "Se ha lanzado una actualización para Left 4 Dead 2.",
+        "Post2List": "<li>Opción de Partida Rápida para preferir Servidores Oficiales o Cualquiera.</li><li>Interfaz y subtítulos agregados en vietnamita.</li><li>Límite de comandos por segundo aumentado para corregir falsas desconexiones.</li><li>Corrección de color ajustada en varios mapas.</li>",
+
+        "PatchTitle": "Parche N°56556",
+        "PatchBtn": "ENLACE DE DESCARGA",
+        "UpdateTitle": "ACTUALIZACIÓN N°56556",
+        "UpdateBtn": "ENLACE DE DESCARGA",
+
+        "DiscTitle": "Foro de Discusiones",
+        "DiscSub": "SOPORTE Y DETALLES TÉCNICOS",
+        "DiscText": "A continuación, puedes plantear tus dudas, reportar fallos o dejar tus impresiones.",
+        "DiscHeader": "Comentarios y Discusión",
+        "DiscBtnSubmit": "Publicar Comentario",
+        "NamePlaceholder": "Tu nombre / Nickname",
+        "CommentPlaceholder": "Escribe tu mensaje o consulta...",
+
+        "SideComicTitle": "Cómic",
+        "SideComicLink": "Leer Cómic 'The Sacrifice'",
+        "SidePlayersOnline": "40100 Jugando ahora en Steam",
+        "SidePlatformInfo": "En PC",
+        "SideBtnSteam": "CÓMPRALO AHORA EN STEAM",
+        "SideOriginalL4d": "o el original <a href='https://store.steampowered.com/app/500/Left_4_Dead/' target='_blank'>Left 4 Dead</a>"
+      },
+
+      "english": {
+        "SelectLang": "Choose language:",
+        "TabBlog": "Blog",
+        "TabDownloads": "Downloads",
+        "TabDiscussions": "Discussions",
+
+        "Post1Title": "Left 4 Dead - Update",
+        "Post1Date": "May 6, 2026 - L4D Team",
+        "Post1Content": "An update has been released for Left 4 Dead: Fixed several exploits that could be used to crash servers or remote players.",
+
+        "Post2Title": "Left 4 Dead 2 - Update",
+        "Post2Date": "February 18, 2021 - L4D Team",
+        "Post2Content": "An update has been released for Left 4 Dead 2.",
+        "Post2List": "<li>Quick Match option for all modes allows players to prefer 'Official Servers Only' or 'Any Servers'.</li><li>Added localized UI and subtitles for Vietnamese.</li><li>Increased string commands per second limit to fix false disconnects.</li><li>Fixed color correction for some maps.</li>",
+
+        "PatchTitle": "Patch N°56556",
+        "PatchBtn": "DOWNLOAD LINK",
+        "UpdateTitle": "UPDATE N°56556",
+        "UpdateBtn": "DOWNLOAD LINK",
+
+        "DiscTitle": "Discussions Forum",
+        "DiscSub": "SUPPORT AND TECHNICAL DETAILS",
+        "DiscText": "Below, you can post your questions, report bugs, or leave your thoughts.",
+        "DiscHeader": "Comments and Discussion",
+        "DiscBtnSubmit": "Post Comment",
+        "NamePlaceholder": "Your name / Nickname",
+        "CommentPlaceholder": "Write your message or inquiry...",
+
+        "SideComicTitle": "Comic",
+        "SideComicLink": "Read The Sacrifice Comic",
+        "SidePlayersOnline": "40100 In-game now on Steam",
+        "SidePlatformInfo": "On PC",
+        "SideBtnSteam": "GET IT NOW ON STEAM",
+        "SideOriginalL4d": "or the original <a href='https://store.steampowered.com/app/500/Left_4_Dead/' target='_blank'>Left 4 Dead</a>"
+      },
+
+      "latino": {
+        "SelectLang": "Elegir idioma:",
+        "TabBlog": "Inicio",
+        "TabDownloads": "Descargas",
+        "TabDiscussions": "Discusiones",
+
+        "Post1Title": "Left 4 Dead - Actualización",
+        "Post1Date": "6 de mayo de 2026 - Equipo L4D",
+        "Post1Content": "Se lanzó un parche para Left 4 Dead: Se corrigieron errores que colapsaban servidores o jugadores.",
+
+        "Post2Title": "Left 4 Dead 2 - Actualización",
+        "Post2Date": "18 de febrero de 2021 - Equipo L4D",
+        "Post2Content": "Se lanzó una actualización para Left 4 Dead 2.",
+        "Post2List": "<li>Opción de Búsqueda Rápida para Servidores Oficiales o Cualquiera.</li><li>Subtítulos e interfaz agregados en vietnamita.</li><li>Límite de comandos aumentado para evitar desconexiones falsas.</li><li>Ajustes de color corregidos en varios mapas.</li>",
+
+        "PatchTitle": "Parche N°56556",
+        "PatchBtn": "ENLACE DE DESCARGA",
+        "UpdateTitle": "ACTUALIZACIÓN N°56556",
+        "UpdateBtn": "ENLACE DE DESCARGA",
+
+        "DiscTitle": "Foro de Discusiones",
+        "DiscSub": "SOPORTE Y DETALLES TÉCNICOS",
+        "DiscText": "Aquí puedes publicar tus dudas, reportar fallos o platicar sobre el juego.",
+        "DiscHeader": "Comentarios y Discusión",
+        "DiscBtnSubmit": "Publicar Comentario",
+        "NamePlaceholder": "Tu nombre / Apodo",
+        "CommentPlaceholder": "Escribe tu mensaje...",
+
+        "SideComicTitle": "Cómic",
+        "SideComicLink": "Leer Cómic 'El Sacrificio'",
+        "SidePlayersOnline": "40100 Jugando ahora en Steam",
+        "SidePlatformInfo": "En PC",
+        "SideBtnSteam": "CONSÍGUELO AHORA EN STEAM",
+        "SideOriginalL4d": "o el original <a href='https://store.steampowered.com/app/500/Left_4_Dead/' target='_blank'>Left 4 Dead</a>"
+      },
+
+      "portuguese": {
+        "SelectLang": "Escolher idioma:",
+        "TabBlog": "Início",
+        "TabDownloads": "Downloads",
+        "TabDiscussions": "Discussões",
+
+        "Post1Title": "Left 4 Dead - Atualização",
+        "Post1Date": "6 de maio de 2026 - Equipe L4D",
+        "Post1Content": "Uma atualização foi lançada para Left 4 Dead: Vários exploits foram corrigidos.",
+
+        "Post2Title": "Left 4 Dead 2 - Atualização",
+        "Post2Date": "18 de fevereiro de 2021 - Equipe L4D",
+        "Post2Content": "Uma atualização foi lançada para Left 4 Dead 2.",
+        "Post2List": "<li>Opção de Partida Rápida para Servidores Oficiais ou Qualquer Um.</li><li>UI e legendas adicionadas em vietnamita.</li><li>Limite de comandos por segundo aumentado.</li><li>Correção de cor ajustada em vários mapas.</li>",
+
+        "PatchTitle": "Patch N°56556",
+        "PatchBtn": "LINK DE DOWNLOAD",
+        "UpdateTitle": "ATUALIZAÇÃO N°56556",
+        "UpdateBtn": "LINK DE DOWNLOAD",
+
+        "DiscTitle": "Fórum de Discussões",
+        "DiscSub": "SUPORTE E DETALHES TÉCNICOS",
+        "DiscText": "Abaixo, você pode enviar suas dúvidas, reportar bugs ou deixar sua opinião.",
+        "DiscHeader": "Comentários e Discussão",
+        "DiscBtnSubmit": "Publicar Comentário",
+        "NamePlaceholder": "Seu nome / Apelido",
+        "CommentPlaceholder": "Escreva sua mensagem...",
+
+        "SideComicTitle": "HQ / Comic",
+        "SideComicLink": "Ler HQ 'The Sacrifice'",
+        "SidePlayersOnline": "40100 Jogando agora na Steam",
+        "SidePlatformInfo": "No PC",
+        "SideBtnSteam": "COMPRE AGORA NA STEAM",
+        "SideOriginalL4d": "ou o original <a href='https://store.steampowered.com/app/500/Left_4_Dead/' target='_blank'>Left 4 Dead</a>"
+      }
+    }
+  };
+
+  function changeLanguage(langKey) {
+    const l = KeyValues.lang[langKey];
+    if(!l) return;
+
+    // Navegación
+    document.getElementById('txt_select_lang').innerText = l.SelectLang;
+    document.getElementById('btn_tab_Blog').innerText = l.TabBlog;
+    document.getElementById('btn_tab_downloads').innerText = l.TabDownloads;
+    document.getElementById('btn_tab_discussions').innerText = l.TabDiscussions;
+
+    // Blog
+    document.getElementById('post1_title').innerText = l.Post1Title;
+    document.getElementById('post1_date').innerText = l.Post1Date;
+    document.getElementById('post1_content').innerText = l.Post1Content;
+    document.getElementById('post2_title').innerText = l.Post2Title;
+    document.getElementById('post2_date').innerText = l.Post2Date;
+    document.getElementById('post2_content').innerText = l.Post2Content;
+    document.getElementById('post2_list').innerHTML = l.Post2List;
+
+    // Descargas
+    document.getElementById('patch_title').innerText = l.PatchTitle;
+    document.getElementById('patch_btn_label').innerText = l.PatchBtn;
+    document.getElementById('update_title').innerText = l.UpdateTitle;
+    document.getElementById('update_btn_label').innerText = l.UpdateBtn;
+
+    // Discusiones
+    document.getElementById('disc_title').innerText = l.DiscTitle;
+    document.getElementById('disc_subtitle').innerText = l.DiscSub;
+    document.getElementById('disc_text').innerText = l.DiscText;
+    document.getElementById('disc_comments_header').innerText = l.DiscHeader;
+    document.getElementById('disc_btn_submit').innerText = l.DiscBtnSubmit;
+    document.getElementById('authorName').placeholder = l.NamePlaceholder;
+    document.getElementById('commentText').placeholder = l.CommentPlaceholder;
+
+    // Lateral
+    document.getElementById('side_comic_title').innerText = l.SideComicTitle;
+    document.getElementById('side_comic_link').innerText = l.SideComicLink;
+    document.getElementById('side_players_online').innerText = l.SidePlayersOnline;
+    document.getElementById('side_platform_info').innerText = l.SidePlatformInfo;
+    document.getElementById('side_btn_steam').innerText = l.SideBtnSteam;
+    document.getElementById('side_original_l4d').innerHTML = l.SideOriginalL4d;
+  }
+
+  function switchTab(tabId, element) {
+    const contents = document.querySelectorAll('.tab-content');
+    contents.forEach(content => content.classList.remove('active'));
+
+    const buttons = document.querySelectorAll('.tab-btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
+
+    document.getElementById(tabId).classList.add('active');
+    element.classList.add('active');
+
+    // La columna derecha (Steam + Cómic) permanece visible tanto en Blog como en Descargas
+    const rightContainer = document.getElementById('rightContainer');
+    if (tabId === 'Blog' || tabId === 'descarga') {
+      rightContainer.style.display = 'block';
+    } else {
+      rightContainer.style.display = 'none';
+    }
+  }
+
+  function addComment(event) {
+    event.preventDefault();
+    const nameInput = document.getElementById('authorName');
+    const textInput = document.getElementById('commentText');
+    const commentsList = document.getElementById('commentsList');
+
+    if (nameInput.value.trim() === '' || textInput.value.trim() === '') return;
+
+    const newComment = document.createElement('div');
+    newComment.className = 'single-comment';
+    
+    const currentDate = new Date().toLocaleDateString('es-ES', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    }).toUpperCase();
+
+    newComment.innerHTML = `
+      <span class="comment-author">${nameInput.value}</span>
+      <span class="comment-date">${currentDate}</span>
+      <div class="comment-text">${textInput.value}</div>
+    `;
+
+    commentsList.prepend(newComment);
+    nameInput.value = '';
+    textInput.value = '';
+  }
+</script>
+
+</body>
+</html>
