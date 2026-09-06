@@ -2,7 +2,12 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sitio Web - Estilo L4D</title>
+  
+  <!-- LOGO EN LA PESTAÑA DEL NAVEGADOR (FAVICON) -->
+  <link rel="icon" type="image/jpeg" href="https://i.imgur.com/rv2vDbo.png">
+
   <style>
     /* ESTILO DEL FONDO PRINCIPAL Y LATERALES */
     body { 
@@ -19,11 +24,11 @@
 
     a { color: #81a5c4; text-decoration: none; }
     a:hover { color: #ffffff; text-decoration: underline; }
-    
+
     /* CONTENEDOR CENTRAL */
     #centerpage { width: 960px; margin: 0 auto; text-align: left; }
     #pageContainer { background-color: #161616; padding: 20px; border: 1px solid #333; }
-    
+
     /* BARRA SUPERIOR SOBRE EL BANNER */
     .steam-header-bar {
       background-color: #5a0000;
@@ -56,8 +61,8 @@
 
     /* BARRA DE IDIOMA */
     .top-bar { background-color: #111; padding: 8px 15px; border-bottom: 1px solid #333; display: flex; justify-content: space-between; align-items: center; }
-    .lang-select select { background-color: #222; color: #fff; border: 1px solid #444; padding: 3px 8px; }
-    
+    .lang-select select { background-color: #222; color: #fff; border: 1px solid #444; padding: 3px 8px; cursor: pointer; }
+
     /* PESTAÑAS (NAV) */
     nav.tabs { background-color: #1c1c1c; border-bottom: 2px solid #e15b00; padding: 10px 15px; }
     nav.tabs button { 
@@ -83,11 +88,11 @@
     .blogpost h2 { font-size: 13px; color: #7f7f7f; margin: 0 0 15px 0; font-weight: normal; }
     .blogpost p { line-height: 1.5; color: #c4c4c4; font-size: 14px; margin-bottom: 12px; }
     .blogpost ul { color: #c4c4c4; font-size: 14px; margin-top: 5px; padding-left: 20px; line-height: 1.6; }
-    
+
     /* LÍNEA SEPARADORA */
     .post-divider { border: 0; height: 1px; background: #333333; margin: 25px 0; }
 
-    /* BLOQUE DE DESCARGA (SIN BORDES) */
+    /* BLOQUE DE DESCARGA */
     .download-card {
       background: none;
       border: none;
@@ -123,7 +128,7 @@
     /* COMENTARIOS */
     .comments-section { margin-top: 25px; background-color: #121212; padding: 15px; border: 1px solid #282828; }
     .comments-section h3 { color: #e15b00; margin: 0 0 15px 0; font-size: 16px; border-bottom: 1px solid #333; padding-bottom: 5px; }
-    
+
     .comment-form { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
     .comment-form input, .comment-form textarea {
       background-color: #1a1a1a;
@@ -149,7 +154,7 @@
     .single-comment { background-color: #181818; border: 1px solid #2a2a2a; padding: 10px; }
     .comment-author { color: #e15b00; font-weight: bold; font-size: 12px; }
     .comment-date { color: #666; font-size: 10px; margin-left: 8px; }
-    .comment-text { color: #ccc; font-size: 13px; margin-top: 5px; }
+    .comment-text { color: #ccc; font-size: 13px; margin-top: 5px; word-break: break-word; }
 
     /* COLUMNA DERECHA */
     .sideBox { margin-bottom: 25px; border-bottom: 1px solid #333; padding-bottom: 20px; }
@@ -161,7 +166,7 @@
     .players-online { color: #cc2200; font-size: 17px; font-weight: normal; margin-bottom: 15px; }
     .widget-body { display: flex; align-items: center; justify-content: space-between; gap: 15px; }
     .box-art { width: 120px; height: auto; object-fit: contain; }
-    
+
     .widget-details { flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; }
     .platform-info { font-size: 13px; color: #666644; margin-bottom: 10px; }
     .btn-steam {
@@ -178,7 +183,7 @@
       box-sizing: border-box;
     }
     .btn-steam:hover { background-color: #800000; color: #fff; text-decoration: none; }
-    
+
     .original-l4d-link { font-size: 12px; color: #666644; margin-top: 10px; }
     .original-l4d-link a { color: #cccc00; text-decoration: none; }
     .original-l4d-link a:hover { text-decoration: underline; }
@@ -192,10 +197,10 @@
 <body>
 
 <div id="centerpage">
-  
+
   <div class="steam-header-bar">
     <a href="https://store.steampowered.com/app/500/Left_4_Dead/" target="_blank">GET IT NOW ON STEAM</a>
-    <a href="http://youtube.com/@L4D1CommunityTeam" target="_blank">YOUTUBE</a>
+    <a href="https://youtube.com/@L4D1CommunityTeam" target="_blank">YOUTUBE</a>
     <span class="valve-logo">VALVE</span>
   </div>
 
@@ -223,9 +228,10 @@
 
   <div id="pageContainer">
     <div class="content-wrapper">
-      
+
       <div id="leftContainer">
-        
+
+        <!-- SECCIÓN BLOG -->
         <div id="Blog" class="tab-content active">
 
           <div class="blogpost">
@@ -250,11 +256,12 @@
 
         </div>
 
+        <!-- SECCIÓN DESCARGAS -->
         <div id="descarga" class="tab-content">
-          
+
           <div class="download-card">
             <h2 id="patch_title">Parche N°56556</h2>
-            <a href="AQUI_PEGA_TU_ENLACE_PARCHE" target="_blank" class="download-link-btn" id="patch_btn_label">
+            <a href="#" target="_blank" class="download-link-btn" id="patch_btn_label">
               ENLACE DE DESCARGA
             </a>
             <div>
@@ -266,7 +273,7 @@
 
           <div class="download-card">
             <h2 id="update_title">ACTUALIZACIÓN N°56556</h2>
-            <a href="AQUI_PEGA_TU_ENLACE_ACTUALIZACION" target="_blank" class="download-link-btn" id="update_btn_label">
+            <a href="#" target="_blank" class="download-link-btn" id="update_btn_label">
               ENLACE DE DESCARGA
             </a>
             <div>
@@ -276,6 +283,7 @@
 
         </div>
 
+        <!-- SECCIÓN DISCUSIONES -->
         <div id="discusiones" class="tab-content">
           <div class="blogpost">
             <h1 id="disc_title">Foro de Discusiones</h1>
@@ -285,7 +293,7 @@
 
           <div class="comments-section">
             <h3 id="disc_comments_header">Comentarios y Discusión</h3>
-            
+
             <form class="comment-form" onsubmit="addComment(event)">
               <input type="text" id="authorName" placeholder="Tu nombre / Nickname" required>
               <textarea id="commentText" rows="3" placeholder="Escribe tu mensaje o consulta..." required></textarea>
@@ -305,17 +313,18 @@
 
       </div>
 
+      <!-- COLUMNA DERECHA (STEAM WIDGET + CÓMIC) -->
       <div id="rightContainer">
-        
+
         <div class="sideBox steam-widget">
           <div class="players-online" id="side_players_online">40100 In-game now on Steam</div>
-          
+
           <div class="widget-body">
             <img class="box-art" src="https://i.imgur.com/4HkEJQ9.png" alt="Left 4 Dead 2">
 
             <div class="widget-details">
               <div class="platform-info" id="side_platform_info">On PC</div>
-              
+
               <a href="https://store.steampowered.com/app/500/Left_4_Dead/" target="_blank" class="btn-steam" id="side_btn_steam">
                 GET IT NOW ON STEAM
               </a>
@@ -352,11 +361,11 @@
         "TabBlog": "Blog",
         "TabDownloads": "Descargas",
         "TabDiscussions": "Discusiones",
-        
+
         "Post1Title": "Left 4 Dead - Actualización",
         "Post1Date": "6 de mayo de 2026 - Equipo L4D",
         "Post1Content": "Se ha lanzado una actualización para Left 4 Dead: Se corrigieron varios errores que podían usarse para bloquear servidores o jugadores remotos.",
-        
+
         "Post2Title": "Left 4 Dead 2 - Actualización",
         "Post2Date": "18 de febrero de 2021 - Equipo L4D",
         "Post2Content": "Se ha lanzado una actualización para Left 4 Dead 2.",
@@ -380,7 +389,7 @@
         "SidePlayersOnline": "40100 Jugando ahora en Steam",
         "SidePlatformInfo": "En PC",
         "SideBtnSteam": "CÓMPRALO AHORA EN STEAM",
-        "SideOriginalL4d": "o el original <a href='https://store.steampowered.com/app/500/Left_4_Dead/' target='_blank'>Left 4 Dead</a>"
+        "SideOriginalL4d": 'o el original <a href="https://store.steampowered.com/app/500/Left_4_Dead/" target="_blank">Left 4 Dead</a>'
       },
 
       "english": {
@@ -416,7 +425,7 @@
         "SidePlayersOnline": "40100 In-game now on Steam",
         "SidePlatformInfo": "On PC",
         "SideBtnSteam": "GET IT NOW ON STEAM",
-        "SideOriginalL4d": "or the original <a href='https://store.steampowered.com/app/500/Left_4_Dead/' target='_blank'>Left 4 Dead</a>"
+        "SideOriginalL4d": 'or the original <a href="https://store.steampowered.com/app/500/Left_4_Dead/" target="_blank">Left 4 Dead</a>'
       },
 
       "latino": {
@@ -452,7 +461,7 @@
         "SidePlayersOnline": "40100 Jugando ahora en Steam",
         "SidePlatformInfo": "En PC",
         "SideBtnSteam": "CONSÍGUELO AHORA EN STEAM",
-        "SideOriginalL4d": "o el original <a href='https://store.steampowered.com/app/500/Left_4_Dead/' target='_blank'>Left 4 Dead</a>"
+        "SideOriginalL4d": 'o el original <a href="https://store.steampowered.com/app/500/Left_4_Dead/" target="_blank">Left 4 Dead</a>'
       },
 
       "portuguese": {
@@ -488,7 +497,7 @@
         "SidePlayersOnline": "40100 Jogando agora na Steam",
         "SidePlatformInfo": "No PC",
         "SideBtnSteam": "COMPRE AGORA NA STEAM",
-        "SideOriginalL4d": "ou o original <a href='https://store.steampowered.com/app/500/Left_4_Dead/' target='_blank'>Left 4 Dead</a>"
+        "SideOriginalL4d": 'ou o original <a href="https://store.steampowered.com/app/500/Left_4_Dead/" target="_blank">Left 4 Dead</a>'
       }
     }
   };
@@ -497,13 +506,11 @@
     const l = KeyValues.lang[langKey];
     if(!l) return;
 
-    // Navegación
     document.getElementById('txt_select_lang').innerText = l.SelectLang;
     document.getElementById('btn_tab_Blog').innerText = l.TabBlog;
     document.getElementById('btn_tab_downloads').innerText = l.TabDownloads;
     document.getElementById('btn_tab_discussions').innerText = l.TabDiscussions;
 
-    // Blog
     document.getElementById('post1_title').innerText = l.Post1Title;
     document.getElementById('post1_date').innerText = l.Post1Date;
     document.getElementById('post1_content').innerText = l.Post1Content;
@@ -512,13 +519,11 @@
     document.getElementById('post2_content').innerText = l.Post2Content;
     document.getElementById('post2_list').innerHTML = l.Post2List;
 
-    // Descargas
     document.getElementById('patch_title').innerText = l.PatchTitle;
     document.getElementById('patch_btn_label').innerText = l.PatchBtn;
     document.getElementById('update_title').innerText = l.UpdateTitle;
     document.getElementById('update_btn_label').innerText = l.UpdateBtn;
 
-    // Discusiones
     document.getElementById('disc_title').innerText = l.DiscTitle;
     document.getElementById('disc_subtitle').innerText = l.DiscSub;
     document.getElementById('disc_text').innerText = l.DiscText;
@@ -527,7 +532,6 @@
     document.getElementById('authorName').placeholder = l.NamePlaceholder;
     document.getElementById('commentText').placeholder = l.CommentPlaceholder;
 
-    // Lateral
     document.getElementById('side_comic_title').innerText = l.SideComicTitle;
     document.getElementById('side_comic_link').innerText = l.SideComicLink;
     document.getElementById('side_players_online').innerText = l.SidePlayersOnline;
@@ -546,7 +550,6 @@
     document.getElementById(tabId).classList.add('active');
     element.classList.add('active');
 
-    // La columna derecha (Steam + Cómic) permanece visible tanto en Blog como en Descargas
     const rightContainer = document.getElementById('rightContainer');
     if (tabId === 'Blog' || tabId === 'descarga') {
       rightContainer.style.display = 'block';
@@ -561,11 +564,17 @@
     const textInput = document.getElementById('commentText');
     const commentsList = document.getElementById('commentsList');
 
-    if (nameInput.value.trim() === '' || textInput.value.trim() === '') return;
+    const nameValue = nameInput.value.trim();
+    const textValue = textInput.value.trim();
+
+    if (nameValue === '' || textValue === '') return;
+
+    const cleanName = nameValue.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    const cleanText = textValue.replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
     const newComment = document.createElement('div');
     newComment.className = 'single-comment';
-    
+
     const currentDate = new Date().toLocaleDateString('es-ES', {
       day: 'numeric',
       month: 'long',
@@ -573,9 +582,9 @@
     }).toUpperCase();
 
     newComment.innerHTML = `
-      <span class="comment-author">${nameInput.value}</span>
+      <span class="comment-author">${cleanName}</span>
       <span class="comment-date">${currentDate}</span>
-      <div class="comment-text">${textInput.value}</div>
+      <div class="comment-text">${cleanText}</div>
     `;
 
     commentsList.prepend(newComment);
