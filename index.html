@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -87,6 +87,20 @@
     .blogpost h4 { font-size: 14px; color: #e15b00; margin: 10px 0 3px 0; }
     .blogpost p { line-height: 1.5; color: #c4c4c4; font-size: 14px; margin-bottom: 12px; }
     .blogpost ul { color: #c4c4c4; font-size: 13px; margin-top: 3px; padding-left: 20px; line-height: 1.5; }
+
+    /* Estilos para las categorías de progreso */
+    .progress-category-title {
+      font-size: 16px;
+      color: #e15b00;
+      border-bottom: 2px solid #333;
+      padding-bottom: 5px;
+      margin: 25px 0 15px 0;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+    .progress-category-title:first-child {
+      margin-top: 0;
+    }
 
     .progress-card { background: #0d0d0d; border: 1px solid #2a2a2a; border-left: 4px solid #e15b00; padding: 15px; margin-bottom: 15px; }
     .progress-card h3 { margin: 0 0 5px 0; color: #fff; font-size: 16px; }
@@ -253,10 +267,11 @@
     el.classList.add('active');
   }
 
+  /* Carga los datos desde la carpeta data/ */
   async function cargarTodosLosJSON() {
     try {
       const endpoints = ['noticias', 'progreso', 'changelog', 'galeria', 'descargas'];
-      const res = await Promise.all(endpoints.map(ep => fetch(`${ep}.json`).then(r => r.json()).catch(() => [])));
+      const res = await Promise.all(endpoints.map(ep => fetch(`data/${ep}.json`).then(r => r.json()).catch(() => [])));
       
       endpoints.forEach((ep, i) => db[ep] = res[i]);
       renderizarTodo(document.getElementById('langSelect').value);
@@ -300,16 +315,36 @@
     const c = document.getElementById('progreso');
     const classMap = { 'in_progress': 'status-in-progress', 'planned': 'status-planned', 'completed': 'status-completed' };
 
-    c.innerHTML = db.progreso.map(item => `
-      <div class="progress-card">
-        <h3>${isEs ? item.titulo_es : item.titulo_en}</h3>
-        <p>${isEs ? item.descripcion_es : item.descripcion_en}</p>
-        <div class="progress-bar-bg">
-          <div class="progress-bar-fill" style="width: ${item.porcentaje}%;">${item.porcentaje}%</div>
-        </div>
-        <span class="status-badge ${classMap[item.estado_clave] || 'status-planned'}">${isEs ? item.estado_texto_es : item.estado_texto_en}</span>
-      </div>
-    `).join('');
+    const categorias = [
+      { key: 'base', es: 'Juego Base & Contenido Beta', en: 'Base Game & Beta Content' },
+      { key: 'dam_it', es: 'Campaña: Dam It', en: 'Campaign: Dam It' },
+      { key: 'the_river', es: 'Campaña: The River', en: 'Campaign: The River' }
+    ];
+
+    let htmlFinal = '';
+
+    categorias.forEach(cat => {
+      const items = db.progreso.filter(item => item.categoria === cat.key);
+
+      if (items.length > 0) {
+        htmlFinal += `<div class="progress-category-title">${isEs ? cat.es : cat.en}</div>`;
+
+        items.forEach(item => {
+          htmlFinal += `
+            <div class="progress-card">
+              <h3>${isEs ? item.titulo_es : item.titulo_en}</h3>
+              <p>${isEs ? item.descripcion_es : item.descripcion_en}</p>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill" style="width: ${item.porcentaje}%;">${item.porcentaje}%</div>
+              </div>
+              <span class="status-badge ${classMap[item.estado_clave] || 'status-planned'}">${isEs ? item.estado_texto_es : item.estado_texto_en}</span>
+            </div>
+          `;
+        });
+      }
+    });
+
+    c.innerHTML = htmlFinal || '<p style="color:#777;">No hay datos disponibles.</p>';
   }
 
   function renderChangelog(isEs) {
@@ -349,6 +384,7 @@
     `).join('');
   }
 
+  /* Carga traducciones desde la carpeta resource/ */
   async function renderizarTodo(lang) {
     const isEs = lang === 'spanish';
 
