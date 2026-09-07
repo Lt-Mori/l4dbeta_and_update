@@ -4,24 +4,30 @@
     "fecha_es": "23 de Diciembre de 2024",
     "fecha_en": "December 23, 2024",
     "cambios_es": [
-      "No Mercy: Nuevo comienzo en la intro con audios beta. Diálogos restauardos para los supervivientes. Interacciones de voz al pulsar el generador y el ascensor (cap. 2 y 4). El piloto ahora ve a los supervivientes y lanza suministros (cap. 2). Nuevos Easter eggs (cap. 3, 4 y 5). Respuestas de radio y rescate mejoradas y más coherentes.",
-      "Crash Course: Intro corregida. Diálogos de Bill no utilizados restaurados desde subtítulos. Audio de Francis corregido. Nuevas líneas beta en los refugios del cap. 2 y nuevo Easter egg.",
-      "Death Toll: Vehículo blindado de la campaña anterior añadido. Diálogos de intro corregidos y nueva línea beta para Zoey frente al puente caído. Nuevas conversaciones en el evento de la iglesia y refugios. Respuesta rápida a la solicitud de rescate en el cap. 5.",
-      "Dead Air: Nuevas líneas para supervivientes en el cap. 5. Líneas del piloto de AC-130 al incapacitarse el equipo. Menciones al personaje de Terry.",
-      "Blood Harvest: Nuevas conversaciones entre militares y nueva música para el Tank.",
-      "The Sacrifice: Diálogos, audios y conversaciones corregidas. Nueva banda sonora (incluye tema final basado en Requiem For A Tower) y un nuevo Easter egg.",
-      "Subtítulos: Múltiples subtítulos nuevos y restaurados (Disponible temporalmente solo en inglés).",
-      "Survival Mode: Añadidos 2 mapas de supervivencia provenientes de la campaña Dam It."
+      "<strong style='color:#e15b00;'>CAMPAIGNS</strong>",
+      "<strong>No Mercy</strong><ul style='margin: 4px 0 12px 0; padding-left: 20px;'><li>Nuevo comienzo en la intro de la campaña con sus audios beta.</li><li>Añadidos nuevos diálogos de la beta para los supervivientes.</li><li>Durante los capítulos 2 y 4, los supervivientes dirán sus líneas al pulsar el interruptor del generador y el botón del ascensor.</li><li>En el capítulo 2, el piloto ahora verá a los supervivientes y les arrojará suministros.</li><li>Añadidos Easter eggs en los capítulos 3, 4 y 5.</li><li>Al responder la radio, ahora habrá una respuesta de los supervivientes.</li><li>Respuesta más rápida para atender la solicitud de rescate en el capítulo 5.</li><li>Respuesta más coherente del piloto hacia los supervivientes.</li><li>Restauradas líneas del piloto donde menciona haber contraído síntomas de la gripe verde.</li></ul>",
+      "<strong>Crash Course</strong><ul style='margin: 4px 0 12px 0; padding-left: 20px;'><li>Intro corregida.</li><li>Introducidos diálogos de Bill que nunca se usaron pero estaban en los subtítulos.</li><li>Audio de Francis corregido.</li><li>Durante el Capítulo 2, habrá nuevas líneas en los refugios provenientes de la Beta.</li><li>Añadido un Easter egg.</li></ul>",
+      "<strong>Death Toll</strong><ul style='margin: 4px 0 12px 0; padding-left: 20px;'><li>Añadido el camión blindado de la campaña anterior.</li><li>Diálogos corregidos en la introducción.</li><li>Añadida una nueva línea beta para Zoey al mirar el puente caído.</li><li>Durante el evento en la iglesia, se escuchan nuevos diálogos entre el refugiado y los supervivientes.</li><li>Nuevas conversaciones en el refugio y en la iglesia.</li><li>Respuesta más rápida para atender la solicitud de rescate en el capítulo 5.</li></ul>",
+      "<strong>Dead Air</strong><ul style='margin: 4px 0 12px 0; padding-left: 20px;'><li>Nuevas líneas de los supervivientes en el Capítulo 5.</li><li>Nuevas líneas del piloto del AC-130 cuando los supervivientes están incapacitados.</li><li>Mención de Terry por parte de los supervivientes.</li></ul>",
+      "<strong>Blood Harvest</strong><ul style='margin: 4px 0 12px 0; padding-left: 20px;'><li>Añadidas nuevas conversaciones entre los militares.</li><li>Añadida nueva música para el Tank en esta campaña.</li></ul>",
+      "<strong>The Sacrifice</strong><ul style='margin: 4px 0 12px 0; padding-left: 20px;'><li>Conversaciones, diálogos, sonidos y audios corregidos.</li><li>Añadida una nueva banda sonora y otra para el final basada en la canción Requiem For A Tower.</li><li>Añadido un Easter egg.</li></ul>",
+      "<strong style='color:#e15b00;'>SUBTITLES</strong>",
+      "<ul><li>Múltiples subtítulos nuevos y aquellos que fueron removidos de la versión final.<br><em>Nota: Solo disponible en inglés por el momento.</em></li></ul>",
+      "<strong style='color:#e15b00;'>SURVIVAL MODE</strong>",
+      "<ul><li>Añadidos los 2 mapas de supervivencia que venían en el paquete de la campaña Dam It.</li></ul>"
     ],
     "cambios_en": [
-      "No Mercy: New beginnings to campaign intro with beta audios. Added unused beta dialogues. Elevator and generator button interaction lines. Chapter 2 pilot now spots survivors and drops supplies. Added easter eggs (chapters 3, 4, 5). Coherent radio and rescue responses.",
-      "Crash Course: Fixed intro. Restored unused Bill dialogues from subtitles. Fixed Francis audio. New beta lines in chapter 2 shelters and an easter egg.",
-      "Death Toll: Added armored truck. Corrected intro dialogues and added new beta line for Zoey at the fallen bridge. New church event and shelter conversations. Faster rescue response in chapter 5.",
-      "Dead Air: New survivor lines in chapter 5. New AC-130 Pilot lines when team is incapacitated. Mention of Terry by survivors.",
-      "Blood Harvest: New military conversations and new Tank soundtrack.",
-      "The Sacrifice: Fixed dialogues, sounds, and audio. New soundtrack including ending theme based on Requiem For A Tower. Added easter egg.",
-      "Subtitles: Restored unused subtitles and added new ones (Currently available in English only).",
-      "Survival Mode: Added 2 Survival maps from the Dam It campaign pack."
+      "<strong style='color:#e15b00;'>CAMPAIGNS</strong>",
+      "<strong>No Mercy</strong><ul style='margin: 4px 0 12px 0; padding-left: 20px;'><li>New beginnings to the campaign intro with its beta audios.</li><li>Added new dialogues that were in the beta to the survivors in this campaign.</li><li>During chapter 2 and 4, survivors will now say their lines when pressing the generator switch and the elevator button.</li><li>In chapter 2, the pilot will now see the survivors and will throw supplies to them.</li><li>Added some easter eggs in chapters 3, 4 and 5.</li><li>When answering the radio there will now be a response from the survivors.</li><li>There will now be a quick response to meet the rescue request in chapter 5.</li><li>There will now be a more coherent response from the pilot to the survivors.</li><li>Restored lines from the pilot where he mentions that he contracted symptoms of the green flu.</li></ul>",
+      "<strong>Crash Course</strong><ul style='margin: 4px 0 12px 0; padding-left: 20px;'><li>Fixed the intro.</li><li>Introduced Bill's dialogues that were never used but were in the subtitles.</li><li>Fixed Francis' audio.</li><li>During Chapter 2, there will be new lines in the shelters that were from the Beta.</li><li>Added an Easter egg.</li></ul>",
+      "<strong>Death Toll</strong><ul style='margin: 4px 0 12px 0; padding-left: 20px;'><li>Added the armored truck from the previous campaign.</li><li>Corrected dialogues in the introduction.</li><li>Added a new beta line for Zoey when she looks at the fallen bridge.</li><li>During the event at the church, new dialogues were heard between the refugee and the survivors.</li><li>Conversations in the shelter and in the church.</li><li>There will now be a quick response to meet the rescue request in chapter 5.</li></ul>",
+      "<strong>Dead Air</strong><ul style='margin: 4px 0 12px 0; padding-left: 20px;'><li>New lines from the survivors in Chapter 5.</li><li>New lines from the AC-130 Pilot when the survivors are incapacitated.</li><li>Mention of Terry by the survivors.</li></ul>",
+      "<strong>Blood Harvest</strong><ul style='margin: 4px 0 12px 0; padding-left: 20px;'><li>Added new conversations between the military.</li><li>Added new music for the Tank in this campaign.</li></ul>",
+      "<strong>The Sacrifice</strong><ul style='margin: 4px 0 12px 0; padding-left: 20px;'><li>Fixed conversations, dialogues, sounds, audios.</li><li>Added a new soundtrack and also another one for the ending based on the song from Requiem For A Tower.</li><li>Added an Easter egg.</li></ul>",
+      "<strong style='color:#e15b00;'>SUBTITLES</strong>",
+      "<ul><li>They have several new subtitles and also those that were removed from the final version.<br><em>Note: Only available in English at the moment.</em></li></ul>",
+      "<strong style='color:#e15b00;'>SURVIVAL MODE</strong>",
+      "<ul><li>Added the 2 Survival maps that came in the dam it campaign pack.</li></ul>"
     ]
   }
 ]
