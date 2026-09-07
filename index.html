@@ -7,20 +7,22 @@
   <link rel="icon" type="image/jpeg" href="https://i.imgur.com/rv2vDbo.png">
 
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * { box-sizing: border-box; }
     
-    body { 
+    html, body { 
+      margin: 0; 
+      padding: 0; 
       background: #000 url('https://i.imgur.com/FxiV5jv.jpeg') no-repeat center bottom fixed;
       color: #ccc; 
-      font-family: Arial, Helvetica, sans-serif; 
+      font-family: Arial, sans-serif; 
     }
 
     a { color: #81a5c4; text-decoration: none; }
     a:hover { color: #fff; text-decoration: underline; }
 
-    /* top bar steam */
-    .s-bar {
-      background: linear-gradient(180deg, #600000 0%, #400000 100%);
+    .steam-header-bar {
+      width: 100%;
+      background: linear-gradient(to bottom, #600000, #400000);
       border-bottom: 1px solid #2a0000;
       padding: 6px 15px;
       display: flex;
@@ -30,141 +32,168 @@
       font-size: 11px;
       font-weight: bold;
       text-transform: uppercase;
-      box-shadow: 0 2px 5px #000;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.8);
     }
-    .s-bar a { color: #d8d8d8; display: flex; align-items: center; gap: 6px; }
-    .s-bar a:hover { color: #fff; text-decoration: none; }
-    .s-bar svg { width: 14px; height: 14px; fill: currentColor; }
-    .v-logo {
+    .steam-header-bar a { color: #d8d8d8; display: flex; align-items: center; gap: 6px; }
+    .steam-header-bar a:hover { color: #fff; text-decoration: none; }
+    
+    .header-icon {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
+
+    .steam-header-bar .valve-logo {
       border: 1px solid #f00;
       color: #f00;
       padding: 0 4px;
-      font-family: Impact, sans-serif;
+      font-family: Impact, "Arial Black", sans-serif;
       font-size: 12px;
+      letter-spacing: 1px;
     }
 
-    #wrap { width: 960px; margin: 0 auto; }
-    #main-box { background: #161616; padding: 20px; border: 1px solid #333; }
+    #centerpage { width: 960px; margin: 0 auto; }
+    #pageContainer { background-color: #161616; padding: 20px; border: 1px solid #333; }
 
-    #banner { width: 100%; height: 180px; background: #000; }
+    #banner { width: 100%; height: 180px; overflow: hidden; background: #000; text-align: center; }
     #banner img { width: 100%; height: 100%; object-fit: cover; }
 
-    .sub-bar { background: #111; padding: 8px 15px; border-bottom: 1px solid #333; display: flex; justify-content: space-between; align-items: center; }
-    .lang-box select { background: #222; color: #fff; border: 1px solid #444; padding: 3px 6px; cursor: pointer; }
+    .top-bar { background: #111; padding: 8px 15px; border-bottom: 1px solid #333; display: flex; justify-content: space-between; align-items: center; }
+    .lang-select select { background: #222; color: #fff; border: 1px solid #444; padding: 3px 8px; cursor: pointer; }
 
-    .nav-tabs { background: #1c1c1c; border-bottom: 2px solid #e15b00; padding: 10px 15px; display: flex; gap: 15px; }
-    .nav-tabs button { 
+    nav.tabs { background: #1c1c1c; border-bottom: 2px solid #e15b00; padding: 10px 15px; display: flex; gap: 15px; flex-wrap: wrap; }
+    nav.tabs button { 
       background: none; border: none; color: #fff; font-weight: bold; 
       text-transform: uppercase; font-size: 13px; cursor: pointer; padding: 4px 0;
     }
-    .nav-tabs button.active, .nav-tabs button:hover { color: #e15b00; }
+    nav.tabs button.active, nav.tabs button:hover { color: #e15b00; }
 
-    .grid-container { display: flex; margin-top: 20px; gap: 20px; }
-    #col-left { flex: 1; min-width: 0; }
-    #col-right { width: 340px; flex-shrink: 0; }
+    .content-wrapper { display: flex; margin-top: 20px; gap: 20px; }
+    #leftContainer { flex: 1; min-width: 0; }
+    #rightContainer { width: 340px; flex-shrink: 0; }
 
-    .tab-pane { display: none; }
-    .tab-pane.active { display: block; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
 
-    /* posts */
-    .post { margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid #262626; }
-    .post:last-child { border-bottom: none; }
-    .post h1 { font-size: 20px; margin: 0 0 4px; font-weight: bold; }
-    .post h1 a { color: #e13b00; }
-    .post h1 a:hover { color: #ff5522; }
-    .post h2 { font-size: 13px; color: #7f7f7f; margin: 0 0 15px; font-weight: normal; }
-    .post p { line-height: 1.5; color: #c4c4c4; font-size: 14px; margin-bottom: 12px; }
+    .blogpost { margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid #262626; }
+    .blogpost:last-child { border-bottom: none; }
+    .blogpost h1 { font-size: 20px; color: #e13b00; margin: 0 0 4px 0; font-weight: bold; }
+    .blogpost h1 a { color: #e13b00; }
+    .blogpost h1 a:hover { color: #ff5522; text-decoration: underline; }
+    .blogpost h2 { font-size: 13px; color: #7f7f7f; margin: 0 0 15px 0; font-weight: normal; }
+    .blogpost p { line-height: 1.5; color: #c4c4c4; font-size: 14px; margin-bottom: 12px; }
 
-    /* progreso */
-    .prog-sec { margin-bottom: 35px; }
-    .prog-sec h2 {
-      font-size: 18px; color: #e15b00; border-bottom: 1px solid #2a2a2a;
-      padding-bottom: 6px; margin: 0 0 20px; text-transform: uppercase;
+    .progress-section { margin-bottom: 35px; padding-bottom: 10px; }
+    .progress-section-title {
+      font-size: 18px;
+      color: #e15b00;
+      border-bottom: 1px solid #2a2a2a;
+      padding-bottom: 6px;
+      margin: 0 0 20px 0;
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 0.5px;
     }
-    .prog-list { display: flex; flex-direction: column; gap: 25px; }
-    .prog-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
-    .prog-head .title { color: #fff; font-size: 16px; font-weight: bold; }
-    .prog-head .date { color: #666; font-size: 12px; }
-    .prog-desc { color: #bbb; font-size: 13.5px; line-height: 1.5; margin: 0 0 12px; }
-    .prog-imgs { display: flex; gap: 12px; flex-wrap: wrap; }
-    .prog-imgs a { flex: 1; min-width: 200px; max-width: 49%; }
-    .prog-imgs img {
-      width: 100%; height: 170px; object-fit: cover; border-radius: 2px;
-      opacity: 0.9; transition: all .2s;
+    .progress-item-list { display: flex; flex-direction: column; gap: 25px; }
+    .progress-item { background: transparent; padding: 0; border: none; }
+    .progress-item-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+    .progress-item-title { color: #fff; font-size: 16px; font-weight: bold; }
+    .progress-item-date { color: #666; font-size: 12px; }
+    .progress-item-desc { color: #bbb; font-size: 13.5px; line-height: 1.5; margin: 0 0 12px 0; }
+    .progress-images-container { display: flex; gap: 12px; flex-wrap: wrap; }
+    .progress-image-wrapper { flex: 1; min-width: 200px; max-width: 49%; display: block; }
+    .progress-image-wrapper img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      border-radius: 2px;
+      display: block;
+      opacity: 0.9;
+      transition: opacity 0.2s ease, transform 0.2s ease;
     }
-    .prog-imgs img:hover { opacity: 1; transform: scale(1.01); }
+    .progress-image-wrapper img:hover { opacity: 1; transform: scale(1.01); }
 
-    /* changelog */
-    .log-item { border-bottom: 1px solid #222; padding-bottom: 15px; margin-bottom: 20px; }
-    .log-item h3 { color: #e15b00; margin: 0 0 2px; font-size: 16px; }
-    .log-item .date { color: #666; font-size: 12px; margin-bottom: 10px; }
-    .log-item ul { list-style: none; padding: 0; margin: 0; font-size: 13px; line-height: 1.5; }
+    .changelog-item { background: transparent; border-bottom: 1px solid #222; padding-bottom: 15px; margin-bottom: 20px; }
+    .changelog-item h3 { color: #e15b00; margin: 0 0 2px 0; font-size: 16px; }
+    .changelog-item .changelog-date { color: #666; font-size: 12px; margin-bottom: 10px; }
+    .changelog-item ul.changelog-list { list-style: none; padding-left: 0; margin: 0; color: #ccc; font-size: 13px; line-height: 1.5; }
 
-    /* galeria */
-    .gal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
-    .gal-card { background: #0a0a0a; border: 1px solid #222; }
-    .gal-card img { width: 100%; height: 140px; object-fit: cover; display: block; }
-    .gal-card img:hover { transform: scale(1.03); }
-    .gal-info { padding: 8px 10px; }
-    .gal-info h4 { margin: 0; color: #ddd; font-size: 13px; }
-    .gal-info p { margin: 4px 0 0; color: #777; font-size: 11px; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+    .gallery-card { background: #0a0a0a; border: 1px solid #222; overflow: hidden; }
+    .gallery-card img { width: 100%; height: 140px; object-fit: cover; display: block; transition: transform 0.2s ease; }
+    .gallery-card img:hover { transform: scale(1.03); }
+    .gallery-card .gallery-info { padding: 8px 10px; }
+    .gallery-card .gallery-info h4 { margin: 0; color: #ddd; font-size: 13px; }
+    .gallery-card .gallery-info p { margin: 4px 0 0 0; color: #777; font-size: 11px; }
 
-    /* descargas */
-    .dl-card { background: #111; border: 1px solid #2a2a2a; padding: 15px; margin-bottom: 15px; }
-    .dl-card h2 { color: #e15b00; font-size: 18px; margin: 0 0 6px; }
-    .dl-card p { color: #aaa; font-size: 13px; margin: 0 0 12px; line-height: 1.4; }
-    .btn-dl {
-      display: inline-block; background: #e15b00; color: #fff; padding: 8px 16px;
-      font-weight: bold; border-radius: 3px; font-size: 12px; text-transform: uppercase;
+    .download-card { background: #111; border: 1px solid #2a2a2a; padding: 15px; margin-bottom: 15px; }
+    .download-card h2 { color: #e15b00; font-size: 18px; margin: 0 0 6px 0; font-weight: bold; }
+    .download-card p { color: #aaa; font-size: 13px; margin: 0 0 12px 0; line-height: 1.4; }
+    .download-link-btn {
+      display: inline-block;
+      background-color: #e15b00;
+      color: #fff;
+      padding: 8px 16px;
+      font-weight: bold;
+      border-radius: 3px;
+      font-size: 12px;
+      text-transform: uppercase;
     }
-    .btn-dl:hover { background: #ff6a00; color: #fff; text-decoration: none; }
+    .download-link-btn:hover { background-color: #ff6a00; color: #fff; text-decoration: none; }
 
-    /* visor galeria estilo steam */
-    .st-gallery { background: #000; border: 1px solid #2a2a2a; width: 100%; max-width: 560px; margin-top: 15px; }
-    .st-main { width: 100%; height: 280px; background: #050505; }
-    .st-main img { width: 100%; height: 100%; object-fit: contain; }
-    .st-thumbs { display: flex; gap: 6px; padding: 8px; background: #121619; overflow-x: auto; border-top: 1px solid #222; }
-    .thumb { width: 90px; height: 52px; object-fit: cover; cursor: pointer; opacity: 0.5; border: 2px solid transparent; flex-shrink: 0; }
+    .steam-gallery {
+      background: #000;
+      border: 1px solid #2a2a2a;
+      width: 100%;
+      max-width: 560px;
+      margin-top: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+    .gallery-main { width: 100%; height: 280px; background: #050505; display: flex; align-items: center; justify-content: center; }
+    .gallery-main img { width: 100%; height: 100%; object-fit: contain; }
+    .gallery-thumbnails { display: flex; gap: 6px; padding: 8px; background: #121619; overflow-x: auto; border-top: 1px solid #222; }
+    .thumb { width: 90px; height: 52px; object-fit: cover; cursor: pointer; opacity: 0.5; border: 2px solid transparent; transition: all 0.2s ease; flex-shrink: 0; }
     .thumb:hover { opacity: 0.8; }
     .thumb.active { opacity: 1; border-color: #67c1f5; }
 
-    /* sidebar */
-    .side-box { margin-bottom: 25px; border-bottom: 1px solid #333; padding-bottom: 20px; }
-    .side-box:last-child { border-bottom: none; }
-    .side-box h1 { font-size: 16px; color: #e15b00; margin: 0 0 10px; }
-    .side-box img { width: 100%; height: auto; border: 1px solid #333; margin-bottom: 8px; display: block; }
-    .side-box p { font-size: 12px; color: #aaa; margin: 5px 0 10px; line-height: 1.4; }
-    .side-link { color: #ffff00; font-size: 13px; font-weight: bold; }
-    .side-link:hover { color: #fff; text-decoration: underline; }
+    .sideBox { margin-bottom: 25px; border-bottom: 1px solid #333; padding-bottom: 20px; }
+    .sideBox:last-child { border-bottom: none; }
+    .sideBox h1 { font-size: 16px; color: #e15b00; margin: 0 0 10px 0; }
+    .comic-box img, .mod-box img { width: 100%; height: auto; border: 1px solid #333; margin-bottom: 8px; display: block; }
+    .comic-link, .mod-link { color: #ffff00; font-size: 13px; font-weight: bold; }
+    .comic-link:hover, .mod-link:hover { color: #fff; text-decoration: underline; }
+    .mod-box p { font-size: 12px; color: #aaa; margin: 5px 0 10px 0; line-height: 1.4; }
   </style>
 </head>
 <body>
 
-  <div class="s-bar">
+  <div class="steam-header-bar">
     <a href="https://store.steampowered.com/app/500/Left_4_Dead/" target="_blank">
-      <svg viewBox="0 0 24 24"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.029 4.524 4.524s-2.03 4.524-4.524 4.524c-.08 0-.158-.007-.238-.012l-4.06 2.894c.005.082.012.163.012.246 0 1.993-1.615 3.608-3.608 3.608-1.748 0-3.203-1.25-3.535-2.893L.328 15.228C1.82 20.334 6.471 24 11.979 24c6.627 0 12-5.373 12-12s-5.373-12-12-12z"/></svg>
+      <svg class="header-icon" viewBox="0 0 24 24"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.029 4.524 4.524s-2.03 4.524-4.524 4.524c-.08 0-.158-.007-.238-.012l-4.06 2.894c.005.082.012.163.012.246 0 1.993-1.615 3.608-3.608 3.608-1.748 0-3.203-1.25-3.535-2.893L.328 15.228C1.82 20.334 6.471 24 11.979 24c6.627 0 12-5.373 12-12s-5.373-12-12-12z"/></svg>
       <span data-i18n="HeaderSteam">CONSÍGUELO AHORA EN STEAM</span>
     </a>
     <a href="https://youtube.com/@L4D1CommunityTeam" target="_blank">
-      <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      <svg class="header-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
       YOUTUBE
     </a>
     <a href="https://steamcommunity.com/app/500" target="_blank">
-      <svg viewBox="0 0 24 24"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.029 4.524 4.524s-2.03 4.524-4.524 4.524c-.08 0-.158-.007-.238-.012l-4.06 2.894c.005.082.012.163.012.246 0 1.993-1.615 3.608-3.608 3.608-1.748 0-3.203-1.25-3.535-2.893L.328 15.228C1.82 20.334 6.471 24 11.979 24c6.627 0 12-5.373 12-12s-5.373-12-12-12z"/></svg>
+      <svg class="header-icon" viewBox="0 0 24 24"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.029 4.524 4.524s-2.03 4.524-4.524 4.524c-.08 0-.158-.007-.238-.012l-4.06 2.894c.005.082.012.163.012.246 0 1.993-1.615 3.608-3.608 3.608-1.748 0-3.203-1.25-3.535-2.893L.328 15.228C1.82 20.334 6.471 24 11.979 24c6.627 0 12-5.373 12-12s-5.373-12-12-12z"/></svg>
       <span data-i18n="HeaderCommunity">CENTRO DE LA COMUNIDAD</span>
     </a>
-    <span class="v-logo">VALVE</span>
+    <span class="valve-logo">VALVE</span>
   </div>
 
-<div id="wrap">
+<div id="centerpage">
 
   <div id="banner">
     <img src="https://via.placeholder.com/960x180/222222/e15b00?text=BANNER+IMAGEN" alt="Banner">
   </div>
 
-  <div class="sub-bar">
+  <div class="top-bar">
     <span style="font-size: 12px; color: #888;" data-i18n="SelectLang">Elegir idioma:</span>
-    <div class="lang-box">
+    <div class="lang-select">
       <select id="langSelect">
         <option value="spanish">Español</option>
         <option value="english">English</option>
@@ -172,7 +201,7 @@
     </div>
   </div>
 
-  <nav class="nav-tabs">
+  <nav class="tabs">
     <button class="tab-btn active" data-tab="Blog" data-i18n="TabBlog">Inicio / Blog</button>
     <button class="tab-btn" data-tab="progreso" data-i18n="TabProgress">Progreso</button>
     <button class="tab-btn" data-tab="changelog" data-i18n="TabChangelog">Changelog</button>
@@ -180,46 +209,46 @@
     <button class="tab-btn" data-tab="descarga" data-i18n="TabDownloads">Descargas</button>
   </nav>
 
-  <div id="main-box">
-    <div class="grid-container">
+  <div id="pageContainer">
+    <div class="content-wrapper">
 
-      <div id="col-left">
-        <div id="Blog" class="tab-pane active"></div>
-        <div id="progreso" class="tab-pane"></div>
-        <div id="changelog" class="tab-pane"></div>
-        <div id="galeria" class="tab-pane"></div>
-        <div id="descarga" class="tab-pane"></div>
+      <div id="leftContainer">
+        <div id="Blog" class="tab-content active"></div>
+        <div id="progreso" class="tab-content"></div>
+        <div id="changelog" class="tab-content"></div>
+        <div id="galeria" class="tab-content"></div>
+        <div id="descarga" class="tab-content"></div>
       </div>
 
-      <div id="col-right">
-        <div class="side-box es-only">
+      <div id="rightContainer">
+        <div class="sideBox mod-box spanish-only">
           <h1 data-i18n="SideGraffitiTitle">MOD Carteles en Español</h1>
           <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3708814222" target="_blank">
-            <img src="https://i.imgur.com/dtf2qGp.gif" alt="Mod Carteles">
+            <img src="https://i.imgur.com/dtf2qGp.gif" alt="Mod Carteles y Graffitis en Español">
           </a>
           <p data-i18n="SideGraffitiDesc">Modificación que traduce las texturas de los carteles, señales y graffitis del juego al español.</p>
-          <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3708814222" target="_blank" class="side-link" data-i18n="SideGraffitiLink">
+          <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3708814222" target="_blank" class="mod-link" data-i18n="SideGraffitiLink">
             Ver en Steam Workshop
           </a>
         </div>
 
-        <div class="side-box">
+        <div class="sideBox comic-box">
           <h1 data-i18n="SideComicTitle">Cómic</h1>
           <a href="https://www.l4d.com/comic/" target="_blank">
             <img src="https://i.imgur.com/poT9j5u.jpeg" alt="The Sacrifice Comic">
           </a>
-          <a href="https://www.l4d.com/comic/" target="_blank" class="side-link" data-i18n="SideComicLink">
+          <a href="https://www.l4d.com/comic/" target="_blank" class="comic-link" data-i18n="SideComicLink">
             Leer Cómic 'The Sacrifice'
           </a>
         </div>
 
-        <div class="side-box es-only">
+        <div class="sideBox mod-box spanish-only">
           <h1 data-i18n="SideModTitle">MOD Doblaje Latino</h1>
           <a href="https://www.nexusmods.com/left4dead2/mods/115" target="_blank">
-            <img src="https://staticdelivery.nexusmods.com/mods/195/images/headers/115_1706769656.jpg" alt="Doblaje Latino">
+            <img src="https://staticdelivery.nexusmods.com/mods/195/images/headers/115_1706769656.jpg" alt="Mod Doblaje Latino Header">
           </a>
           <p data-i18n="SideModDesc">Disfruta de Left 4 Dead 2 con doblaje en español latino completo realizado por la comunidad.</p>
-          <a href="https://www.nexusmods.com/left4dead2/mods/115" target="_blank" class="side-link" data-i18n="SideModLink">
+          <a href="https://www.nexusmods.com/left4dead2/mods/115" target="_blank" class="mod-link" data-i18n="SideModLink">
             Ver en Nexus Mods
           </a>
         </div>
@@ -231,149 +260,179 @@
 </div>
 
 <script>
-  var store = { noticias: [], progreso: [], changelog: [], galeria: [], descargas: [] };
+  let db = { noticias: [], progreso: [], changelog: [], galeria: [], descargas: [] };
 
-  function switchMedia(imgEl, targetId) {
-    document.getElementById(targetId).src = imgEl.src;
-    var thumbs = imgEl.parentElement.querySelectorAll('.thumb');
-    for (var i = 0; i < thumbs.length; i++) thumbs[i].classList.remove('active');
-    imgEl.classList.add('active');
+  function switchMedia(el, displayId) {
+    document.getElementById(displayId).src = el.src;
+    el.parentElement.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
   }
 
-  function loadData() {
-    var files = ['noticias', 'progreso', 'changelog', 'galeria', 'descargas'];
-    var reqs = files.map(f => fetch('data/' + f + '.json').then(r => r.json()).catch(() => []));
-
-    Promise.all(reqs).then(results => {
-      files.forEach((f, idx) => store[f] = results[idx]);
-      updateUI(document.getElementById('langSelect').value);
-    });
+  async function cargarTodosLosJSON() {
+    try {
+      const endpoints = ['noticias', 'progreso', 'changelog', 'galeria', 'descargas'];
+      const res = await Promise.all(endpoints.map(ep => fetch(`data/${ep}.json`).then(r => r.json()).catch(() => [])));
+      
+      endpoints.forEach((ep, i) => db[ep] = res[i]);
+      renderizarTodo(document.getElementById('langSelect').value);
+    } catch (err) {
+      console.error(err);
+    }
   }
 
-  function updateUI(lang) {
-    var isEs = lang === 'spanish';
+  function renderNoticias(isEs) {
+    const c = document.getElementById('Blog');
+    c.innerHTML = db.noticias.map(item => {
+      const t = isEs ? item.titulo_es : item.titulo_en;
+      const f = isEs ? item.fecha_es : item.fecha_en;
+      const body = isEs ? item.contenido_es : item.contenido_en;
 
-    // Cargar textos i18n
-    fetch('resource/' + lang + '.json')
-      .then(r => r.json())
-      .then(data => {
-        document.querySelectorAll('[data-i18n]').forEach(el => {
-          var k = el.getAttribute('data-i18n');
-          if (data[k]) el.textContent = data[k];
-        });
-      }).catch(e => {});
-
-    // Mostrar/ocultar elementos segun idioma
-    document.querySelectorAll('.es-only').forEach(el => {
-      el.style.display = isEs ? 'block' : 'none';
-    });
-
-    // Render Blog
-    document.getElementById('Blog').innerHTML = store.noticias.map(item => {
-      var g = '';
-      if (item.imagenes && item.imagenes.length) {
-        var mId = 'main_' + item.id;
-        var tHtml = item.imagenes.map((img, i) => 
-          `<img class="thumb ${i === 0 ? 'active' : ''}" src="${img}" onclick="switchMedia(this, '${mId}')">`
+      let galeria = '';
+      if (item.imagenes?.length) {
+        const displayId = `mainDisplay_${item.id}`;
+        const thumbs = item.imagenes.map((img, i) => 
+          `<img class="thumb ${i === 0 ? 'active' : ''}" src="${img}" onclick="switchMedia(this, '${displayId}')">`
         ).join('');
 
-        g = `<div class="st-gallery">
-               <div class="st-main"><img id="${mId}" src="${item.imagenes[0]}"></div>
-               <div class="st-thumbs">${tHtml}</div>
-             </div>`;
+        galeria = `
+          <div class="steam-gallery">
+            <div class="gallery-main"><img id="${displayId}" src="${item.imagenes[0]}"></div>
+            <div class="gallery-thumbnails">${thumbs}</div>
+          </div>`;
       }
 
-      return `<article class="post">
-        <h1><a href="#">${isEs ? item.titulo_es : item.titulo_en}</a></h1>
-        <h2>${isEs ? item.fecha_es : item.fecha_en}</h2>
-        <div>${isEs ? item.contenido_es : item.contenido_en}</div>
-        ${g}
-      </article>`;
+      return `
+        <article class="blogpost">
+          <h1><a href="#">${t}</a></h1>
+          <h2>${f}</h2>
+          <div>${body}</div>
+          ${galeria}
+        </article>`;
     }).join('');
+  }
 
-    // Render Progreso
-    var cats = [
-      { id: 'base', es: 'Juego Base & Contenido Beta', en: 'Base Game & Beta Content' },
-      { id: 'dam_it', es: 'Campaña: Dam It', en: 'Campaign: Dam It' },
-      { id: 'the_river', es: 'Campaña: The River', en: 'Campaign: The River' }
+  function renderProgreso(isEs) {
+    const c = document.getElementById('progreso');
+    const categorias = [
+      { key: 'base', es: 'Juego Base & Contenido Beta', en: 'Base Game & Beta Content' },
+      { key: 'dam_it', es: 'Campaña: Dam It', en: 'Campaign: Dam It' },
+      { key: 'the_river', es: 'Campaña: The River', en: 'Campaign: The River' }
     ];
 
-    document.getElementById('progreso').innerHTML = cats.map(c => {
-      var list = store.progreso.filter(p => p.categoria === c.id);
-      var inner = list.length ? list.map(p => {
-        var imgs = (p.imagenes && p.imagenes.length) 
-          ? `<div class="prog-imgs">${p.imagenes.map(i => `<a href="${i}" target="_blank"><img src="${i}"></a>`).join('')}</div>` 
-          : '';
+    c.innerHTML = categorias.map(cat => {
+      const items = db.progreso.filter(item => item.categoria === cat.key);
+      const itemsHTML = items.length > 0 
+        ? items.map(item => {
+            const fecha = isEs ? item.fecha_es : item.fecha_en;
+            const imagenesHTML = item.imagenes?.length ? `
+              <div class="progress-images-container">
+                ${item.imagenes.map(img => `
+                  <a href="${img}" target="_blank" class="progress-image-wrapper">
+                    <img src="${img}" alt="Captura de progreso">
+                  </a>
+                `).join('')}
+              </div>` : '';
 
-        return `<div class="prog-item">
-          <div class="prog-head">
-            <span class="title">${isEs ? p.titulo_es : p.titulo_en}</span>
-            ${(isEs ? p.fecha_es : p.fecha_en) ? `<span class="date">${isEs ? p.fecha_es : p.fecha_en}</span>` : ''}
-          </div>
-          <p class="prog-desc">${isEs ? p.descripcion_es : p.descripcion_en}</p>
-          ${imgs}
+            return `
+              <div class="progress-item">
+                <div class="progress-item-header">
+                  <span class="progress-item-title">${isEs ? item.titulo_es : item.titulo_en}</span>
+                  ${fecha ? `<span class="progress-item-date">${fecha}</span>` : ''}
+                </div>
+                <p class="progress-item-desc">${isEs ? item.descripcion_es : item.descripcion_en}</p>
+                ${imagenesHTML}
+              </div>`;
+          }).join('')
+        : `<p style="color:#555; font-size:13px; font-style:italic; margin:0;">${isEs ? 'Sin avances registrados aún.' : 'No progress items recorded yet.'}</p>`;
+
+      return `
+        <div class="progress-section">
+          <h2 class="progress-section-title">${isEs ? cat.es : cat.en}</h2>
+          <div class="progress-item-list">${itemsHTML}</div>
         </div>`;
-      }).join('') : `<p style="color:#555;font-size:13px;font-style:italic;">${isEs ? 'Sin avances registrados aún.' : 'No progress items recorded yet.'}</p>`;
-
-      return `<div class="prog-sec">
-        <h2>${isEs ? c.es : c.en}</h2>
-        <div class="prog-list">${inner}</div>
-      </div>`;
     }).join('');
+  }
 
-    // Render Changelog
-    document.getElementById('changelog').innerHTML = store.changelog.map(item => `
-      <div class="log-item">
+  function renderChangelog(isEs) {
+    const c = document.getElementById('changelog');
+    c.innerHTML = db.changelog.map(item => `
+      <div class="changelog-item">
         <h3>Versión / Parche: ${item.version}</h3>
-        <div class="date">${isEs ? item.fecha_es : item.fecha_en}</div>
-        <ul>${(isEs ? item.cambios_es : item.cambios_en).map(x => `<li style="margin-bottom:6px;">${x}</li>`).join('')}</ul>
-      </div>
-    `).join('');
-
-    // Render Galeria
-    document.getElementById('galeria').innerHTML = `<div class="gal-grid">${
-      store.galeria.map(item => `
-        <div class="gal-card">
-          <a href="${item.url_imagen}" target="_blank"><img src="${item.url_imagen}"></a>
-          <div class="gal-info">
-            <h4>${isEs ? item.titulo_es : item.titulo_en}</h4>
-            <p>${isEs ? item.descripcion_es : item.descripcion_en}</p>
-          </div>
-        </div>
-      `).join('')
-    }</div>`;
-
-    // Render Descargas
-    document.getElementById('descarga').innerHTML = store.descargas.map(item => `
-      <div class="dl-card">
-        <h2>${isEs ? item.titulo_es : item.titulo_en}</h2>
-        <p>${isEs ? item.descripcion_es : item.descripcion_en}</p>
-        <a href="${item.enlace}" target="_blank" class="btn-dl">${isEs ? item.boton_texto_es : item.boton_texto_en}</a>
+        <div class="changelog-date">${isEs ? item.fecha_es : item.fecha_en}</div>
+        <ul class="changelog-list">${(isEs ? item.cambios_es : item.cambios_en).map(li => `<li style="margin-bottom: 8px;">${li}</li>`).join('')}</ul>
       </div>
     `).join('');
   }
 
-  // Events
-  document.getElementById('langSelect').addEventListener('change', function(e) {
-    updateUI(e.target.value);
-  });
+  function renderGaleria(isEs) {
+    const c = document.getElementById('galeria');
+    c.innerHTML = `<div class="gallery-grid">${db.galeria.map(item => `
+      <div class="gallery-card">
+        <a href="${item.url_imagen}" target="_blank">
+          <img src="${item.url_imagen}" alt="${isEs ? item.titulo_es : item.titulo_en}">
+        </a>
+        <div class="gallery-info">
+          <h4>${isEs ? item.titulo_es : item.titulo_en}</h4>
+          <p>${isEs ? item.descripcion_es : item.descripcion_en}</p>
+        </div>
+      </div>
+    `).join('')}</div>`;
+  }
 
-  var btns = document.querySelectorAll('.tab-btn');
-  btns.forEach(btn => {
-    btn.addEventListener('click', function() {
-      var target = this.getAttribute('data-tab');
-      
-      document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
-      btns.forEach(b => b.classList.remove('active'));
-      
-      document.getElementById(target).classList.add('active');
-      this.classList.add('active');
+  function renderDescargas(isEs) {
+    const c = document.getElementById('descarga');
+    c.innerHTML = db.descargas.map(item => `
+      <div class="download-card">
+        <h2>${isEs ? item.titulo_es : item.titulo_en}</h2>
+        <p>${isEs ? item.descripcion_es : item.descripcion_en}</p>
+        <a href="${item.enlace}" target="_blank" class="download-link-btn">${isEs ? item.boton_texto_es : item.boton_texto_en}</a>
+      </div>
+    `).join('');
+  }
 
-      document.getElementById('col-right').style.display = (target === 'galeria' || target === 'descarga') ? 'none' : 'block';
+  async function renderizarTodo(lang) {
+    const isEs = lang === 'spanish';
+
+    try {
+      const res = await fetch(`resource/${lang}.json`);
+      const langData = await res.json();
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (langData[key]) el.textContent = langData[key];
+      });
+    } catch (err) {
+      console.error(err);
+    }
+
+    document.querySelectorAll('.spanish-only').forEach(b => {
+      b.style.display = isEs ? 'block' : 'none';
+    });
+
+    renderNoticias(isEs);
+    renderProgreso(isEs);
+    renderChangelog(isEs);
+    renderGaleria(isEs);
+    renderDescargas(isEs);
+  }
+
+  document.getElementById('langSelect').addEventListener('change', (e) => renderizarTodo(e.target.value));
+
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetTab = btn.getAttribute('data-tab');
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      
+      document.getElementById(targetTab).classList.add('active');
+      btn.classList.add('active');
+
+      const rightContainer = document.getElementById('rightContainer');
+      rightContainer.style.display = (targetTab === 'galeria' || targetTab === 'descarga') ? 'none' : 'block';
     });
   });
 
-  loadData();
+  cargarTodosLosJSON();
 </script>
 
 </body>
