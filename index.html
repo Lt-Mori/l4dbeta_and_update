@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,6 +20,7 @@
     a { color: #81a5c4; text-decoration: none; }
     a:hover { color: #fff; text-decoration: underline; }
 
+    /* Header Superior Estilo Valve / Steam */
     .steam-header-bar {
       width: 100%;
       background: linear-gradient(to bottom, #600000, #400000);
@@ -54,6 +55,7 @@
       letter-spacing: 1px;
     }
 
+    /* Estructura Principal */
     #centerpage { width: 960px; margin: 0 auto; }
     #pageContainer { background-color: #161616; padding: 20px; border: 1px solid #333; }
 
@@ -77,18 +79,16 @@
     .tab-content { display: none; }
     .tab-content.active { display: block; }
 
+    /* Estilos Blog / Noticias */
     .blogpost { margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid #262626; }
     .blogpost:last-child { border-bottom: none; }
     .blogpost h1 { font-size: 20px; color: #e13b00; margin: 0 0 4px 0; font-weight: bold; }
     .blogpost h1 a { color: #e13b00; }
     .blogpost h1 a:hover { color: #ff5522; text-decoration: underline; }
     .blogpost h2 { font-size: 13px; color: #7f7f7f; margin: 0 0 15px 0; font-weight: normal; }
-    .blogpost h3 { font-size: 15px; color: #fff; margin: 15px 0 5px 0; border-bottom: 1px solid #333; padding-bottom: 3px; }
-    .blogpost h4 { font-size: 14px; color: #e15b00; margin: 10px 0 3px 0; }
     .blogpost p { line-height: 1.5; color: #c4c4c4; font-size: 14px; margin-bottom: 12px; }
-    .blogpost ul { color: #c4c4c4; font-size: 13px; margin-top: 3px; padding-left: 20px; line-height: 1.5; }
 
-    /* Estilos para las secciones de listas de progreso */
+    /* Estilos para las Tarjetas de Progreso y Registros de Avances */
     .progress-section {
       background: #0a0a0a;
       border: 1px solid #282828;
@@ -106,61 +106,88 @@
     }
 
     .progress-item-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
     }
 
     .progress-item {
       background: #111;
       border: 1px solid #222;
-      border-left: 3px solid #e15b00;
-      padding: 10px 12px;
-      margin-bottom: 10px;
-    }
-
-    .progress-item:last-child {
-      margin-bottom: 0;
+      border-left: 4px solid #e15b00;
+      padding: 12px 15px;
     }
 
     .progress-item-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 5px;
+      margin-bottom: 6px;
     }
 
     .progress-item-title {
       color: #fff;
-      font-size: 14px;
+      font-size: 15px;
       font-weight: bold;
     }
 
     .progress-item-date {
-      color: #666;
+      color: #777;
       font-size: 11px;
     }
 
     .progress-item-desc {
-      color: #aaa;
+      color: #bbb;
       font-size: 13px;
-      line-height: 1.4;
+      line-height: 1.5;
       margin: 0;
     }
 
+    .progress-images-container {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    .progress-image-wrapper {
+      flex: 1;
+      min-width: 200px;
+      max-width: 49%;
+      display: block;
+    }
+
+    .progress-image-wrapper img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border: 1px solid #333;
+      border-radius: 2px;
+      display: block;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .progress-image-wrapper img:hover {
+      border-color: #e15b00;
+      transform: scale(1.01);
+    }
+
+    /* Changelog */
     .changelog-item { background: #111; border: 1px solid #282828; padding: 15px; margin-bottom: 15px; }
     .changelog-item h3 { color: #e15b00; margin: 0 0 2px 0; font-size: 16px; }
     .changelog-item .changelog-date { color: #666; font-size: 12px; margin-bottom: 10px; }
     .changelog-item ul { margin: 0; padding-left: 20px; color: #ccc; font-size: 13px; line-height: 1.5; }
 
+    /* Galería */
     .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
     .gallery-card { background: #0a0a0a; border: 1px solid #222; overflow: hidden; }
-    .gallery-card img { width: 100%; height: 140px; object-fit: cover; display: block; transition: transform 0.2s ease; cursor: pointer; }
+    .gallery-card img { width: 100%; height: 140px; object-fit: cover; display: block; transition: transform 0.2s ease; }
     .gallery-card img:hover { transform: scale(1.03); }
     .gallery-card .gallery-info { padding: 8px 10px; }
     .gallery-card .gallery-info h4 { margin: 0; color: #ddd; font-size: 13px; }
     .gallery-card .gallery-info p { margin: 4px 0 0 0; color: #777; font-size: 11px; }
 
+    /* Descargas */
     .download-card { background: #111; border: 1px solid #2a2a2a; padding: 15px; margin-bottom: 15px; }
     .download-card h2 { color: #e15b00; font-size: 18px; margin: 0 0 6px 0; font-weight: bold; }
     .download-card p { color: #aaa; font-size: 13px; margin: 0 0 12px 0; line-height: 1.4; }
@@ -176,6 +203,7 @@
     }
     .download-link-btn:hover { background-color: #ff6a00; color: #fff; text-decoration: none; }
 
+    /* Galería con miniaturas de noticias */
     .steam-gallery {
       background: #000;
       border: 1px solid #2a2a2a;
@@ -184,15 +212,14 @@
       margin-top: 15px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.5);
     }
-    .gallery-main { width: 100%; height: 280px; background: #050505; display: flex; align-items: center; justify-content: center; position: relative; }
+    .gallery-main { width: 100%; height: 280px; background: #050505; display: flex; align-items: center; justify-content: center; }
     .gallery-main img { width: 100%; height: 100%; object-fit: contain; }
     .gallery-thumbnails { display: flex; gap: 6px; padding: 8px; background: #121619; overflow-x: auto; border-top: 1px solid #222; }
-    .gallery-thumbnails::-webkit-scrollbar { height: 6px; }
-    .gallery-thumbnails::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
     .thumb { width: 90px; height: 52px; object-fit: cover; cursor: pointer; opacity: 0.5; border: 2px solid transparent; transition: all 0.2s ease; flex-shrink: 0; }
     .thumb:hover { opacity: 0.8; }
     .thumb.active { opacity: 1; border-color: #67c1f5; }
 
+    /* Sidebar Derecha */
     .sideBox { margin-bottom: 25px; border-bottom: 1px solid #333; padding-bottom: 20px; }
     .sideBox:last-child { border-bottom: none; }
     .sideBox h1 { font-size: 16px; color: #e15b00; margin: 0 0 10px 0; }
@@ -303,7 +330,7 @@
     el.classList.add('active');
   }
 
-  /* Carga los datos desde la carpeta data/ */
+  /* Carga de datos JSON */
   async function cargarTodosLosJSON() {
     try {
       const endpoints = ['noticias', 'progreso', 'changelog', 'galeria', 'descargas'];
@@ -347,7 +374,8 @@
     }).join('');
   }
 
-function renderProgreso(isEs) {
+  /* Render de la sección de Progreso con Soporte de Imágenes */
+  function renderProgreso(isEs) {
     const c = document.getElementById('progreso');
 
     const categorias = [
@@ -373,14 +401,13 @@ function renderProgreso(isEs) {
           const fecha = isEs ? item.fecha_es : item.fecha_en;
           const desc = isEs ? item.descripcion_es : item.descripcion_en;
 
-          // Generar la galería de imágenes si existen en el JSON
           let imagenesHTML = '';
           if (item.imagenes && item.imagenes.length > 0) {
             imagenesHTML = `
-              <div style="display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap;">
+              <div class="progress-images-container">
                 ${item.imagenes.map(img => `
-                  <a href="${img}" target="_blank" style="flex: 1; min-width: 200px; max-width: 48%;">
-                    <img src="${img}" style="width: 100%; border: 1px solid #333; border-radius: 3px; display: block; object-fit: cover; height: 160px;">
+                  <a href="${img}" target="_blank" class="progress-image-wrapper">
+                    <img src="${img}" alt="Captura de progreso">
                   </a>
                 `).join('')}
               </div>
@@ -448,7 +475,7 @@ function renderProgreso(isEs) {
     `).join('');
   }
 
-  /* Carga traducciones desde la carpeta resource/ */
+  /* Manejador de Idiomas */
   async function renderizarTodo(lang) {
     const isEs = lang === 'spanish';
 
@@ -477,6 +504,7 @@ function renderProgreso(isEs) {
 
   document.getElementById('langSelect').addEventListener('change', (e) => renderizarTodo(e.target.value));
 
+  /* Navegación por Pestañas */
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const targetTab = btn.getAttribute('data-tab');
