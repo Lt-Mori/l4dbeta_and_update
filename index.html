@@ -347,7 +347,7 @@
     }).join('');
   }
 
-  function renderProgreso(isEs) {
+function renderProgreso(isEs) {
     const c = document.getElementById('progreso');
 
     const categorias = [
@@ -364,7 +364,7 @@
       htmlFinal += `
         <div class="progress-section">
           <h2 class="progress-section-title">${isEs ? cat.es : cat.en}</h2>
-          <ul class="progress-item-list">
+          <div class="progress-item-list">
       `;
 
       if (items.length > 0) {
@@ -373,22 +373,37 @@
           const fecha = isEs ? item.fecha_es : item.fecha_en;
           const desc = isEs ? item.descripcion_es : item.descripcion_en;
 
+          // Generar la galería de imágenes si existen en el JSON
+          let imagenesHTML = '';
+          if (item.imagenes && item.imagenes.length > 0) {
+            imagenesHTML = `
+              <div style="display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap;">
+                ${item.imagenes.map(img => `
+                  <a href="${img}" target="_blank" style="flex: 1; min-width: 200px; max-width: 48%;">
+                    <img src="${img}" style="width: 100%; border: 1px solid #333; border-radius: 3px; display: block; object-fit: cover; height: 160px;">
+                  </a>
+                `).join('')}
+              </div>
+            `;
+          }
+
           htmlFinal += `
-            <li class="progress-item">
+            <div class="progress-item">
               <div class="progress-item-header">
                 <span class="progress-item-title">${titulo}</span>
                 ${fecha ? `<span class="progress-item-date">${fecha}</span>` : ''}
               </div>
               <p class="progress-item-desc">${desc}</p>
-            </li>
+              ${imagenesHTML}
+            </div>
           `;
         });
       } else {
-        htmlFinal += `<li style="color:#666; font-size:12px; font-style:italic;">${isEs ? 'Sin avances registrados aún.' : 'No progress items recorded yet.'}</li>`;
+        htmlFinal += `<p style="color:#666; font-size:12px; font-style:italic;">${isEs ? 'Sin avances registrados aún.' : 'No progress items recorded yet.'}</p>`;
       }
 
       htmlFinal += `
-          </ul>
+          </div>
         </div>
       `;
     });
