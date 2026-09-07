@@ -1,1 +1,38 @@
-
+[
+  {
+    "id": 1,
+    "categoria": "base",
+    "titulo_es": "Traducción de diálogos Beta",
+    "titulo_en": "Beta Dialogues Translation",
+    "descripcion_es": "Restauración de líneas de voz eliminadas durante la beta.",
+    "descripcion_en": "Restoration of unused voice lines cut during beta.",
+    "porcentaje": 80,
+    "estado_clave": "in_progress",
+    "estado_texto_es": "En Progreso",
+    "estado_texto_en": "In Progress"
+  },
+  {
+    "id": 2,
+    "categoria": "dam_it",
+    "titulo_es": "Mapeado de la Represa (Mapa 1 y 2)",
+    "titulo_en": "Dam Mapping (Map 1 & 2)",
+    "descripcion_es": "Ajuste de iluminación y colocación de props.",
+    "descripcion_en": "Lighting adjustments and prop placement.",
+    "porcentaje": 45,
+    "estado_clave": "in_progress",
+    "estado_texto_es": "En Progreso",
+    "estado_texto_en": "In Progress"
+  },
+  {
+    "id": 3,
+    "categoria": "the_river",
+    "titulo_es": "Diseño de Niveles Inicial",
+    "titulo_en": "Initial Level Design",
+    "descripcion_es": "Planificación de rutas y eventos de pánico.",
+    "descripcion_en": "Route planning and panic events.",
+    "porcentaje": 10,
+    "estado_clave": "planned",
+    "estado_texto_es": "Planificado",
+    "estado_texto_en": "Planned"
+  }
+]
