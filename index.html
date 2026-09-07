@@ -64,20 +64,21 @@
     .top-bar { background: #111; padding: 8px 15px; border-bottom: 1px solid #333; display: flex; justify-content: space-between; align-items: center; }
     .lang-select select { background: #222; color: #fff; border: 1px solid #444; padding: 3px 8px; cursor: pointer; }
 
-    nav.tabs { background: #1c1c1c; border-bottom: 2px solid #e15b00; padding: 10px 15px; }
+    nav.tabs { background: #1c1c1c; border-bottom: 2px solid #e15b00; padding: 10px 15px; display: flex; gap: 15px; flex-wrap: wrap; }
     nav.tabs button { 
       background: none; border: none; color: #fff; font-weight: bold; 
-      margin-right: 20px; text-transform: uppercase; font-size: 14px; cursor: pointer; 
+      text-transform: uppercase; font-size: 13px; cursor: pointer; padding: 4px 0;
     }
     nav.tabs button.active, nav.tabs button:hover { color: #e15b00; }
 
     .content-wrapper { display: flex; margin-top: 20px; gap: 20px; }
-    #leftContainer { flex: 1; }
+    #leftContainer { flex: 1; min-width: 0; }
     #rightContainer { width: 340px; flex-shrink: 0; }
 
     .tab-content { display: none; }
     .tab-content.active { display: block; }
 
+    /* Estilos Blog */
     .blogpost { margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid #262626; }
     .blogpost:last-child { border-bottom: none; }
     .blogpost h1 { font-size: 20px; color: #e13b00; margin: 0 0 4px 0; font-weight: bold; }
@@ -89,21 +90,49 @@
     .blogpost p { line-height: 1.5; color: #c4c4c4; font-size: 14px; margin-bottom: 12px; }
     .blogpost ul { color: #c4c4c4; font-size: 13px; margin-top: 3px; padding-left: 20px; line-height: 1.5; }
 
-    .download-card { margin-bottom: 25px; }
-    .download-card h2 { color: #e15b00; font-size: 20px; margin: 0 0 10px 0; font-weight: bold; }
+    /* Estilos Progreso / Próximamente */
+    .progress-card { background: #0d0d0d; border: 1px solid #2a2a2a; border-left: 4px solid #e15b00; padding: 15px; margin-bottom: 15px; }
+    .progress-card h3 { margin: 0 0 5px 0; color: #fff; font-size: 16px; }
+    .progress-card p { margin: 0 0 10px 0; color: #aaa; font-size: 13px; line-height: 1.4; }
+    .progress-bar-bg { background: #222; border-radius: 3px; height: 18px; width: 100%; overflow: hidden; margin-bottom: 8px; border: 1px solid #333; }
+    .progress-bar-fill { background: linear-gradient(to right, #b33600, #e15b00); height: 100%; text-align: center; font-size: 11px; line-height: 18px; color: #fff; font-weight: bold; }
+    .status-badge { display: inline-block; font-size: 10px; font-weight: bold; padding: 2px 6px; border-radius: 2px; text-transform: uppercase; }
+    .status-in-progress { background: #8a6200; color: #fff; }
+    .status-planned { background: #333; color: #aaa; }
+    .status-completed { background: #1d6f23; color: #fff; }
+
+    /* Estilos Changelog */
+    .changelog-item { background: #111; border: 1px solid #282828; padding: 15px; margin-bottom: 15px; }
+    .changelog-item h3 { color: #e15b00; margin: 0 0 2px 0; font-size: 16px; }
+    .changelog-item .changelog-date { color: #666; font-size: 12px; margin-bottom: 10px; }
+    .changelog-item ul { margin: 0; padding-left: 20px; color: #ccc; font-size: 13px; line-height: 1.5; }
+
+    /* Estilos Galería / Capturas */
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+    .gallery-card { background: #0a0a0a; border: 1px solid #222; overflow: hidden; }
+    .gallery-card img { width: 100%; height: 140px; object-fit: cover; display: block; transition: transform 0.2s ease; cursor: pointer; }
+    .gallery-card img:hover { transform: scale(1.03); }
+    .gallery-card .gallery-info { padding: 8px 10px; }
+    .gallery-card .gallery-info h4 { margin: 0; color: #ddd; font-size: 13px; }
+    .gallery-card .gallery-info p { margin: 4px 0 0 0; color: #777; font-size: 11px; }
+
+    /* Estilos Descargas */
+    .download-card { background: #111; border: 1px solid #2a2a2a; padding: 15px; margin-bottom: 15px; }
+    .download-card h2 { color: #e15b00; font-size: 18px; margin: 0 0 6px 0; font-weight: bold; }
+    .download-card p { color: #aaa; font-size: 13px; margin: 0 0 12px 0; line-height: 1.4; }
     .download-link-btn {
       display: inline-block;
       background-color: #e15b00;
       color: #fff;
-      padding: 10px 18px;
+      padding: 8px 16px;
       font-weight: bold;
       border-radius: 3px;
-      margin: 10px 0 15px 0;
-      font-size: 13px;
+      font-size: 12px;
+      text-transform: uppercase;
     }
     .download-link-btn:hover { background-color: #ff6a00; color: #fff; text-decoration: none; }
 
-    /* Galería */
+    /* Galería de Blog */
     .steam-gallery {
       background: #000;
       border: 1px solid #2a2a2a;
@@ -112,47 +141,19 @@
       margin-top: 15px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.5);
     }
-    .gallery-main {
-      width: 100%;
-      height: 280px;
-      background: #050505;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-    .gallery-main img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-    .gallery-thumbnails {
-      display: flex;
-      gap: 6px;
-      padding: 8px;
-      background: #121619;
-      overflow-x: auto;
-      border-top: 1px solid #222;
-    }
+    .gallery-main { width: 100%; height: 280px; background: #050505; display: flex; align-items: center; justify-content: center; position: relative; }
+    .gallery-main img { width: 100%; height: 100%; object-fit: contain; }
+    .gallery-thumbnails { display: flex; gap: 6px; padding: 8px; background: #121619; overflow-x: auto; border-top: 1px solid #222; }
     .gallery-thumbnails::-webkit-scrollbar { height: 6px; }
     .gallery-thumbnails::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
-    .thumb {
-      width: 90px;
-      height: 52px;
-      object-fit: cover;
-      cursor: pointer;
-      opacity: 0.5;
-      border: 2px solid transparent;
-      transition: all 0.2s ease;
-      flex-shrink: 0;
-    }
+    .thumb { width: 90px; height: 52px; object-fit: cover; cursor: pointer; opacity: 0.5; border: 2px solid transparent; transition: all 0.2s ease; flex-shrink: 0; }
     .thumb:hover { opacity: 0.8; }
     .thumb.active { opacity: 1; border-color: #67c1f5; }
 
+    /* Barra Lateral */
     .sideBox { margin-bottom: 25px; border-bottom: 1px solid #333; padding-bottom: 20px; }
     .sideBox:last-child { border-bottom: none; }
     .sideBox h1 { font-size: 16px; color: #e15b00; margin: 0 0 10px 0; }
-
     .comic-box img, .mod-box img { width: 100%; height: auto; border: 1px solid #333; margin-bottom: 8px; display: block; }
     .comic-link, .mod-link { color: #ffff00; font-size: 13px; font-weight: bold; }
     .comic-link:hover, .mod-link:hover { color: #fff; text-decoration: underline; }
@@ -194,7 +195,10 @@
   </div>
 
   <nav class="tabs">
-    <button class="tab-btn active" data-tab="Blog" data-i18n="TabBlog">Blog</button>
+    <button class="tab-btn active" data-tab="Blog" data-i18n="TabBlog">Inicio / Blog</button>
+    <button class="tab-btn" data-tab="progreso" data-i18n="TabProgress">Progreso</button>
+    <button class="tab-btn" data-tab="changelog" data-i18n="TabChangelog">Changelog</button>
+    <button class="tab-btn" data-tab="galeria" data-i18n="TabGallery">Capturas</button>
     <button class="tab-btn" data-tab="descarga" data-i18n="TabDownloads">Descargas</button>
   </nav>
 
@@ -202,17 +206,11 @@
     <div class="content-wrapper">
 
       <div id="leftContainer">
-
-        <div id="Blog" class="tab-content active">
-          </div>
-
-        <div id="descarga" class="tab-content">
-          <div class="download-card">
-            <h2 data-i18n="PatchTitle">Parche N°56556</h2>
-            <a href="#" target="_blank" class="download-link-btn" data-i18n="PatchBtn">ENLACE DE DESCARGA</a>
-          </div>
-        </div>
-
+        <div id="Blog" class="tab-content active"></div>
+        <div id="progreso" class="tab-content"></div>
+        <div id="changelog" class="tab-content"></div>
+        <div id="galeria" class="tab-content"></div>
+        <div id="descarga" class="tab-content"></div>
       </div>
 
       <div id="rightContainer">
@@ -255,37 +253,12 @@
 </div>
 
 <script>
-  let noticiasData = [];
-
-  const I18N_STATIC = {
-    spanish: {
-      HeaderSteam: "CONSÍGUELO AHORA EN STEAM",
-      HeaderCommunity: "CENTRO DE LA COMUNIDAD",
-      SelectLang: "Elegir idioma:",
-      TabBlog: "Blog",
-      TabDownloads: "Descargas",
-      PatchTitle: "Parche N°56556",
-      PatchBtn: "ENLACE DE DESCARGA",
-      SideGraffitiTitle: "MOD Carteles en Español",
-      SideGraffitiDesc: "Modificación que traduce las texturas de los carteles, señales y graffitis del juego al español.",
-      SideGraffitiLink: "Ver en Steam Workshop",
-      SideComicTitle: "Cómic",
-      SideComicLink: "Leer Cómic 'The Sacrifice'",
-      SideModTitle: "MOD Doblaje Latino",
-      SideModDesc: "Disfruta de Left 4 Dead 2 con doblaje en español latino completo realizado por la comunidad.",
-      SideModLink: "Ver en Nexus Mods"
-    },
-    english: {
-      HeaderSteam: "GET IT NOW ON STEAM",
-      HeaderCommunity: "STEAM COMMUNITY HUB",
-      SelectLang: "Choose language:",
-      TabBlog: "Blog",
-      TabDownloads: "Downloads",
-      PatchTitle: "Patch N°56556",
-      PatchBtn: "DOWNLOAD LINK",
-      SideComicTitle: "Comic",
-      SideComicLink: "Read The Sacrifice Comic"
-    }
+  let db = {
+    noticias: [],
+    progreso: [],
+    changelog: [],
+    galeria: [],
+    descargas: []
   };
 
   function switchMedia(element, targetDisplayId) {
@@ -295,84 +268,186 @@
     element.classList.add('active');
   }
 
-  async function cargarNoticias() {
+  /* Carga los datos dinámicos del sitio */
+  async function cargarTodosLosJSON() {
     try {
-      const response = await fetch('noticias.json');
-      noticiasData = await response.json();
+      const [rNoticias, rProgreso, rChangelog, rGaleria, rDescargas] = await Promise.all([
+        fetch('noticias.json').then(res => res.json()).catch(() => []),
+        fetch('progreso.json').then(res => res.json()).catch(() => []),
+        fetch('changelog.json').then(res => res.json()).catch(() => []),
+        fetch('galeria.json').then(res => res.json()).catch(() => []),
+        fetch('descargas.json').then(res => res.json()).catch(() => [])
+      ]);
+
+      db.noticias = rNoticias;
+      db.progreso = rProgreso;
+      db.changelog = rChangelog;
+      db.galeria = rGaleria;
+      db.descargas = rDescargas;
+
       renderizarTodo(document.getElementById('langSelect').value);
     } catch (error) {
-      console.error('Error cargando noticias.json:', error);
+      console.error('Error cargando archivos JSON:', error);
     }
   }
 
-  function renderizarNoticias(lang) {
-    const blogContainer = document.getElementById('Blog');
-    blogContainer.innerHTML = '';
-
-    noticiasData.forEach(noticia => {
-      const isSpanish = lang === 'spanish';
-      const titulo = isSpanish ? noticia.titulo_es : noticia.titulo_en;
-      const fecha = isSpanish ? noticia.fecha_es : noticia.fecha_en;
-      const contenido = isSpanish ? noticia.contenido_es : noticia.contenido_en;
+  /* Renderizar Noticias */
+  function renderNoticias(isEs) {
+    const c = document.getElementById('Blog');
+    c.innerHTML = '';
+    db.noticias.forEach(item => {
+      const t = isEs ? item.titulo_es : item.titulo_en;
+      const f = isEs ? item.fecha_es : item.fecha_en;
+      const body = isEs ? item.contenido_es : item.contenido_en;
 
       let galeriaHTML = '';
-      if (noticia.imagenes && noticia.imagenes.length > 0) {
-        const displayId = `mainDisplay_${noticia.id}`;
-        const thumbs = noticia.imagenes.map((imgUrl, index) => `
-          <img class="thumb ${index === 0 ? 'active' : ''}" 
-               src="${imgUrl}" 
-               onclick="switchMedia(this, '${displayId}')" 
-               alt="Imagen ${index + 1}">
+      if (item.imagenes && item.imagenes.length > 0) {
+        const displayId = `mainDisplay_${item.id}`;
+        const thumbs = item.imagenes.map((imgUrl, i) => `
+          <img class="thumb ${i === 0 ? 'active' : ''}" src="${imgUrl}" onclick="switchMedia(this, '${displayId}')">
         `).join('');
-
         galeriaHTML = `
           <div class="steam-gallery">
-            <div class="gallery-main">
-              <img id="${displayId}" src="${noticia.imagenes[0]}" alt="Vista previa">
-            </div>
-            <div class="gallery-thumbnails">
-              ${thumbs}
-            </div>
+            <div class="gallery-main"><img id="${displayId}" src="${item.imagenes[0]}"></div>
+            <div class="gallery-thumbnails">${thumbs}</div>
           </div>
         `;
       }
 
-      const article = document.createElement('article');
-      article.className = 'blogpost';
-      article.innerHTML = `
-        <h1><a href="#">${titulo}</a></h1>
-        <h2>${fecha}</h2>
-        <div>${contenido}</div>
-        ${galeriaHTML}
+      c.innerHTML += `
+        <article class="blogpost">
+          <h1><a href="#">${t}</a></h1>
+          <h2>${f}</h2>
+          <div>${body}</div>
+          ${galeriaHTML}
+        </article>
       `;
-      blogContainer.appendChild(article);
     });
   }
 
-  function renderizarTodo(lang) {
-    // 1. Textos estáticos (interfaz)
-    const langData = I18N_STATIC[lang] || I18N_STATIC.spanish;
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-      const key = el.getAttribute('data-i18n');
-      if (langData[key]) el.textContent = langData[key];
-    });
+  /* Renderizar Progreso */
+  function renderProgreso(isEs) {
+    const c = document.getElementById('progreso');
+    c.innerHTML = '';
+    db.progreso.forEach(item => {
+      const t = isEs ? item.titulo_es : item.titulo_en;
+      const d = isEs ? item.descripcion_es : item.descripcion_en;
+      const st = isEs ? item.estado_texto_es : item.estado_texto_en;
+      const classMap = { 'in_progress': 'status-in-progress', 'planned': 'status-planned', 'completed': 'status-completed' };
+      const badgeClass = classMap[item.estado_clave] || 'status-planned';
 
-    // 2. Visibilidad de bloques laterales
-    const spanishBlocks = document.querySelectorAll('.spanish-only');
-    spanishBlocks.forEach(block => {
-      block.style.display = (lang === 'spanish') ? 'block' : 'none';
+      c.innerHTML += `
+        <div class="progress-card">
+          <h3>${t}</h3>
+          <p>${d}</p>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" style="width: ${item.porcentaje}%;">${item.porcentaje}%</div>
+          </div>
+          <span class="status-badge ${badgeClass}">${st}</span>
+        </div>
+      `;
     });
-
-    // 3. Renderizar las noticias según idioma seleccionado
-    renderizarNoticias(lang);
   }
 
-  // Evento Selector de Idioma
+  /* Renderizar Changelog */
+  function renderChangelog(isEs) {
+    const c = document.getElementById('changelog');
+    c.innerHTML = '';
+    db.changelog.forEach(item => {
+      const v = item.version;
+      const f = isEs ? item.fecha_es : item.fecha_en;
+      const cambios = isEs ? item.cambios_es : item.cambios_en;
+      const listHTML = cambios.map(li => `<li>${li}</li>`).join('');
+
+      c.innerHTML += `
+        <div class="changelog-item">
+          <h3>Versión / Parche: ${v}</h3>
+          <div class="changelog-date">${f}</div>
+          <ul>${listHTML}</ul>
+        </div>
+      `;
+    });
+  }
+
+  /* Renderizar Galería */
+  function renderGaleria(isEs) {
+    const c = document.getElementById('galeria');
+    let gridHTML = '<div class="gallery-grid">';
+    db.galeria.forEach(item => {
+      const t = isEs ? item.titulo_es : item.titulo_en;
+      const desc = isEs ? item.descripcion_es : item.descripcion_en;
+      gridHTML += `
+        <div class="gallery-card">
+          <a href="${item.url_imagen}" target="_blank">
+            <img src="${item.url_imagen}" alt="${t}">
+          </a>
+          <div class="gallery-info">
+            <h4>${t}</h4>
+            <p>${desc}</p>
+          </div>
+        </div>
+      `;
+    });
+    gridHTML += '</div>';
+    c.innerHTML = gridHTML;
+  }
+
+  /* Renderizar Descargas */
+  function renderDescargas(isEs) {
+    const c = document.getElementById('descarga');
+    c.innerHTML = '';
+    db.descargas.forEach(item => {
+      const t = isEs ? item.titulo_es : item.titulo_en;
+      const d = isEs ? item.descripcion_es : item.descripcion_en;
+      const btn = isEs ? item.boton_texto_es : item.boton_texto_en;
+
+      c.innerHTML += `
+        <div class="download-card">
+          <h2>${t}</h2>
+          <p>${d}</p>
+          <a href="${item.enlace}" target="_blank" class="download-link-btn">${btn}</a>
+        </div>
+      `;
+    });
+  }
+
+  /* Carga el archivo del idioma correspondiente desde la carpeta resource/ */
+  async function renderizarTodo(lang) {
+    const isEs = (lang === 'spanish');
+
+    try {
+      // Cargar archivo JSON tipo L4D (ej: resource/spanish.json)
+      const res = await fetch(`resource/${lang}.json`);
+      const langData = await res.json();
+
+      // Aplicar traducciones a los elementos con data-i18n
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (langData[key]) el.textContent = langData[key];
+      });
+    } catch (err) {
+      console.error(`Error cargando el archivo de idioma resource/${lang}.json:`, err);
+    }
+
+    // Visibilidad de elementos exclusivos en español
+    document.querySelectorAll('.spanish-only').forEach(b => {
+      b.style.display = isEs ? 'block' : 'none';
+    });
+
+    // Pestañas dinámicas
+    renderNoticias(isEs);
+    renderProgreso(isEs);
+    renderChangelog(isEs);
+    renderGaleria(isEs);
+    renderDescargas(isEs);
+  }
+
+  // Evento Selección de Idioma
   document.getElementById('langSelect').addEventListener('change', (e) => {
     renderizarTodo(e.target.value);
   });
 
-  // Evento Pestañas
+  // Evento Cambio de Pestañas
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const targetTab = btn.getAttribute('data-tab');
@@ -380,11 +455,19 @@
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
       document.getElementById(targetTab).classList.add('active');
       btn.classList.add('active');
+
+      // Ocultar panel lateral en las pestañas "galeria" (Capturas) y "descarga" (Descargas)
+      const rightContainer = document.getElementById('rightContainer');
+      if (targetTab === 'galeria' || targetTab === 'descarga') {
+        rightContainer.style.display = 'none';
+      } else {
+        rightContainer.style.display = 'block';
+      }
     });
   });
 
-  // Cargar datos
-  cargarNoticias();
+  // Inicialización
+  cargarTodosLosJSON();
 </script>
 
 </body>
