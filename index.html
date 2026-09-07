@@ -102,7 +102,7 @@
     }
     .download-link-btn:hover { background-color: #ff6a00; color: #fff; text-decoration: none; }
 
-    /* Estilos de la Galería estilo Steam */
+    /* Galería */
     .steam-gallery {
       background: #000;
       border: 1px solid #2a2a2a;
@@ -133,13 +133,8 @@
       overflow-x: auto;
       border-top: 1px solid #222;
     }
-    .gallery-thumbnails::-webkit-scrollbar {
-      height: 6px;
-    }
-    .gallery-thumbnails::-webkit-scrollbar-thumb {
-      background: #333;
-      border-radius: 3px;
-    }
+    .gallery-thumbnails::-webkit-scrollbar { height: 6px; }
+    .gallery-thumbnails::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
     .thumb {
       width: 90px;
       height: 52px;
@@ -150,37 +145,12 @@
       transition: all 0.2s ease;
       flex-shrink: 0;
     }
-    .thumb:hover {
-      opacity: 0.8;
-    }
-    .thumb.active {
-      opacity: 1;
-      border-color: #67c1f5;
-    }
+    .thumb:hover { opacity: 0.8; }
+    .thumb.active { opacity: 1; border-color: #67c1f5; }
 
     .sideBox { margin-bottom: 25px; border-bottom: 1px solid #333; padding-bottom: 20px; }
     .sideBox:last-child { border-bottom: none; }
     .sideBox h1 { font-size: 16px; color: #e15b00; margin: 0 0 10px 0; }
-
-    .steam-widget { text-align: center; }
-    .widget-body { display: flex; align-items: center; justify-content: space-between; gap: 15px; }
-    .box-art { width: 120px; height: auto; object-fit: contain; }
-
-    .widget-details { flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; }
-    .platform-info { font-size: 13px; color: #666644; margin-bottom: 10px; }
-    .btn-steam {
-      display: block;
-      width: 100%;
-      background: #5d0000;
-      color: #fff;
-      font-weight: bold;
-      font-size: 12px;
-      padding: 10px 5px;
-      text-align: center;
-      border: 1px solid #aa0000;
-      text-transform: uppercase;
-    }
-    .btn-steam:hover { background: #800000; color: #fff; text-decoration: none; }
 
     .comic-box img, .mod-box img { width: 100%; height: auto; border: 1px solid #333; margin-bottom: 8px; display: block; }
     .comic-link, .mod-link { color: #ffff00; font-size: 13px; font-weight: bold; }
@@ -193,7 +163,7 @@
   <div class="steam-header-bar">
     <a href="https://store.steampowered.com/app/500/Left_4_Dead/" target="_blank">
       <svg class="header-icon" viewBox="0 0 24 24"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.029 4.524 4.524s-2.03 4.524-4.524 4.524c-.08 0-.158-.007-.238-.012l-4.06 2.894c.005.082.012.163.012.246 0 1.993-1.615 3.608-3.608 3.608-1.748 0-3.203-1.25-3.535-2.893L.328 15.228C1.82 20.334 6.471 24 11.979 24c6.627 0 12-5.373 12-12s-5.373-12-12-12z"/></svg>
-      GET IT NOW ON STEAM
+      <span data-i18n="HeaderSteam">CONSÍGUELO AHORA EN STEAM</span>
     </a>
     <a href="https://youtube.com/@L4D1CommunityTeam" target="_blank">
       <svg class="header-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
@@ -201,7 +171,7 @@
     </a>
     <a href="https://steamcommunity.com/app/500" target="_blank">
       <svg class="header-icon" viewBox="0 0 24 24"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.029 4.524 4.524s-2.03 4.524-4.524 4.524c-.08 0-.158-.007-.238-.012l-4.06 2.894c.005.082.012.163.012.246 0 1.993-1.615 3.608-3.608 3.608-1.748 0-3.203-1.25-3.535-2.893L.328 15.228C1.82 20.334 6.471 24 11.979 24c6.627 0 12-5.373 12-12s-5.373-12-12-12z"/></svg>
-      STEAM COMMUNITY HUB
+      <span data-i18n="HeaderCommunity">CENTRO DE LA COMUNIDAD</span>
     </a>
     <span class="valve-logo">VALVE</span>
   </div>
@@ -276,19 +246,19 @@
       </div>
 
       <div id="rightContainer">
-        <div class="sideBox steam-widget">
-          <div class="widget-body">
-            <img class="box-art" src="https://i.imgur.com/4HkEJQ9.png" alt="Left 4 Dead 2">
-
-            <div class="widget-details">
-              <div class="platform-info" data-i18n="SidePlatformInfo">En PC</div>
-              <a href="https://store.steampowered.com/app/500/Left_4_Dead/" target="_blank" class="btn-steam" data-i18n="SideBtnSteam">CÓMPRALO AHORA EN STEAM</a>
-            </div>
-          </div>
+        <div class="sideBox mod-box spanish-only">
+          <h1 data-i18n="SideGraffitiTitle">MOD Carteles en Español</h1>
+          <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3708814222" target="_blank">
+            <img src="https://i.imgur.com/dtf2qGp.gif" alt="Mod Carteles y Graffitis en Español">
+          </a>
+          <p data-i18n="SideGraffitiDesc">Modificación que traduce las texturas de los carteles, señales y graffitis del juego al español.</p>
+          <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3708814222" target="_blank" class="mod-link" data-i18n="SideGraffitiLink">
+            Ver en Steam Workshop
+          </a>
         </div>
 
         <div class="sideBox comic-box">
-          <h1 data-i18n="SideComicTitle">Comic</h1>
+          <h1 data-i18n="SideComicTitle">Cómic</h1>
           <a href="https://www.l4d.com/comic/" target="_blank">
             <img src="https://i.imgur.com/poT9j5u.jpeg" alt="The Sacrifice Comic">
           </a>
@@ -297,8 +267,7 @@
           </a>
         </div>
 
-        <!-- Sección: MOD Latino con Imagen Directa de Nexus -->
-        <div class="sideBox mod-box">
+        <div class="sideBox mod-box spanish-only">
           <h1 data-i18n="SideModTitle">MOD Doblaje Latino</h1>
           <a href="https://www.nexusmods.com/left4dead2/mods/115" target="_blank">
             <img src="https://staticdelivery.nexusmods.com/mods/195/images/headers/115_1706769656.jpg" alt="Mod Doblaje Latino Header">
@@ -327,6 +296,8 @@
 
   const I18N = {
     spanish: {
+      HeaderSteam: "CONSÍGUELO AHORA EN STEAM",
+      HeaderCommunity: "CENTRO DE LA COMUNIDAD",
       SelectLang: "Elegir idioma:",
       TabBlog: "Blog",
       TabDownloads: "Descargas",
@@ -339,15 +310,18 @@
       Post2List: "<li>Opción de Partida Rápida para preferir Servidores Oficiales o Cualquiera.</li><li>Interfaz y subtítulos agregados en vietnamita.</li><li>Límite de comandos por segundo aumentado para corregir falsas desconexiones.</li><li>Corrección de color ajustada en varios mapas.</li>",
       PatchTitle: "Parche N°56556",
       PatchBtn: "ENLACE DE DESCARGA",
+      SideGraffitiTitle: "MOD Carteles en Español",
+      SideGraffitiDesc: "Modificación que traduce las texturas de los carteles, señales y graffitis del juego al español.",
+      SideGraffitiLink: "Ver en Steam Workshop",
       SideComicTitle: "Cómic",
       SideComicLink: "Leer Cómic 'The Sacrifice'",
-      SidePlatformInfo: "En PC",
-      SideBtnSteam: "CÓMPRALO AHORA EN STEAM",
       SideModTitle: "MOD Doblaje Latino",
       SideModDesc: "Disfruta de Left 4 Dead 2 con doblaje en español latino completo realizado por la comunidad.",
       SideModLink: "Ver en Nexus Mods"
     },
     english: {
+      HeaderSteam: "GET IT NOW ON STEAM",
+      HeaderCommunity: "STEAM COMMUNITY HUB",
       SelectLang: "Choose language:",
       TabBlog: "Blog",
       TabDownloads: "Downloads",
@@ -361,27 +335,35 @@
       PatchTitle: "Patch N°56556",
       PatchBtn: "DOWNLOAD LINK",
       SideComicTitle: "Comic",
-      SideComicLink: "Read The Sacrifice Comic",
-      SidePlatformInfo: "On PC",
-      SideBtnSteam: "GET IT NOW ON STEAM",
-      SideModTitle: "Latin Dub MOD",
-      SideModDesc: "Enjoy Left 4 Dead 2 with full Latin Spanish dubbing made by the community.",
-      SideModLink: "View on Nexus Mods"
+      SideComicLink: "Read The Sacrifice Comic"
     }
   };
 
   document.getElementById('langSelect').addEventListener('change', (e) => {
-    const lang = I18N[e.target.value];
+    const selectedLang = e.target.value;
+    const lang = I18N[selectedLang];
     if (!lang) return;
 
+    // Cambiar textos traductibles
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
       if (lang[key]) el.textContent = lang[key];
     });
 
     document.getElementById('post2List').innerHTML = lang.Post2List;
+
+    // Mostrar u ocultar bloques que son solo para español
+    const spanishBlocks = document.querySelectorAll('.spanish-only');
+    spanishBlocks.forEach(block => {
+      if (selectedLang === 'spanish') {
+        block.style.display = 'block';
+      } else {
+        block.style.display = 'none';
+      }
+    });
   });
 
+  // Evento para cambiar de pestaña
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const targetTab = btn.getAttribute('data-tab');
