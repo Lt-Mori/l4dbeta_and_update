@@ -1,1 +1,15 @@
-
+[
+  {
+    "id": 1,
+    "titulo_es": "Actualización Importante: Mejoras en Campañas y Diálogos Beta",
+    "titulo_en": "Major Update: Campaign Enhancements & Beta Dialogues",
+    "fecha_es": "23 de Diciembre de 2024",
+    "fecha_en": "December 23, 2024",
+    "contenido_es": "<p>¡Llegó una nueva actualización! Hemos implementado una gran cantidad de restauraciones de audio, diálogos inéditos de la Beta y correcciones detalladas en todas las campañas principales.</p><p>Además, agregamos nuevos subtítulos, secretos en varios mapas y la inclusión de los 2 mapas de supervivencia pertenecientes a la campaña Dam It.</p>",
+    "contenido_en": "<p>A new update is here! We have implemented a massive amount of audio restorations, unused Beta dialogues, and detailed fixes across all main campaigns.</p><p>Additionally, we added new subtitles, easter eggs across several maps, and 2 new survival maps from the Dam It campaign pack.</p>",
+    "imagenes": [
+      "https://i.imgur.com/cZimFfG.jpeg",
+      "https://i.imgur.com/JDC1fVu.jpeg"
+    ]
+  }
+]
