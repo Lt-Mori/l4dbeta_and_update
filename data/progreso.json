@@ -1,38 +1,42 @@
 [
   {
     "id": 1,
-    "categoria": "base",
-    "titulo_es": "Traducción de diálogos Beta",
-    "titulo_en": "Beta Dialogues Translation",
-    "descripcion_es": "Restauración de líneas de voz eliminadas durante la beta.",
-    "descripcion_en": "Restoration of unused voice lines cut during beta.",
-    "porcentaje": 80,
-    "estado_clave": "in_progress",
-    "estado_texto_es": "En Progreso",
-    "estado_texto_en": "In Progress"
+    "categoria": "dam_it",
+    "titulo_es": "Refugio del Capítulo 3: Iluminación y Ambiente",
+    "titulo_en": "Chapter 3 Safehouse: Lighting & Ambience",
+    "fecha_es": "7 de Septiembre, 2026",
+    "fecha_en": "September 7, 2026",
+    "descripcion_es": "Ajuste de las luces fluorescentes de techo, focos rojos de emergencia sobre los escritorios de control y sombras dinámicas en la sala.",
+    "descripcion_en": "Adjusted ceiling fluorescent lights, red emergency spotlights over control desks, and dynamic room shadows."
   },
   {
     "id": 2,
     "categoria": "dam_it",
-    "titulo_es": "Mapeado de la Represa (Mapa 1 y 2)",
-    "titulo_en": "Dam Mapping (Map 1 & 2)",
-    "descripcion_es": "Ajuste de iluminación y colocación de props.",
-    "descripcion_en": "Lighting adjustments and prop placement.",
-    "porcentaje": 45,
-    "estado_clave": "in_progress",
-    "estado_texto_es": "En Progreso",
-    "estado_texto_en": "In Progress"
+    "titulo_es": "Refugio del Capítulo 3: Graffitis y Texturas de Pared",
+    "titulo_en": "Chapter 3 Safehouse: Wall Decals & Graffitis",
+    "fecha_es": "7 de Septiembre, 2026",
+    "fecha_en": "September 7, 2026",
+    "descripcion_es": "Restauración de textos de supervivientes en concreto ('Bridge is Closed!'), grabados del logo militar de 1965 y desgaste por humedad.",
+    "descripcion_en": "Restored survivor wall messages ('Bridge is Closed!'), 1965 military logo decals, and wall moisture details."
   },
   {
     "id": 3,
-    "categoria": "the_river",
-    "titulo_es": "Diseño de Niveles Inicial",
-    "titulo_en": "Initial Level Design",
-    "descripcion_es": "Planificación de rutas y eventos de pánico.",
-    "descripcion_en": "Route planning and panic events.",
-    "porcentaje": 10,
-    "estado_clave": "planned",
-    "estado_texto_es": "Planificado",
-    "estado_texto_en": "Planned"
+    "categoria": "dam_it",
+    "titulo_es": "Refugio del Capítulo 3: Detalles y Props de Sala",
+    "titulo_en": "Chapter 3 Safehouse: Props & Room Details",
+    "fecha_es": "6 de Septiembre, 2026",
+    "fecha_en": "September 6, 2026",
+    "descripcion_es": "Colocación de la mesa de control, gabinete de primeros auxilios, sacos de dormir, ropa tirada y estanterías con cajas de cartón.",
+    "descripcion_en": "Placed control desk consoles, first aid wall kit, sleeping bags, scattered clothes, and storage shelves with cardboard boxes."
+  },
+  {
+    "id": 4,
+    "categoria": "dam_it",
+    "titulo_es": "Lógica de Puerta del Refugio",
+    "titulo_en": "Safehouse Door Logic",
+    "fecha_es": "5 de Septiembre, 2026",
+    "fecha_en": "September 5, 2026",
+    "descripcion_es": "Configuración de la entidad checkpoint door para el cambio de nivel entre el Capítulo 2 y Capítulo 3.",
+    "descripcion_en": "Configured checkpoint door entity for level transition between Chapter 2 and Chapter 3."
   }
 ]
