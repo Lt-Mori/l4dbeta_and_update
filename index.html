@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>L4D1-BETA-UPDATE</title>
+  <title>Sitio Web - Estilo L4D</title>
   <link rel="icon" type="image/jpeg" href="https://i.imgur.com/rv2vDbo.png">
 
   <style>
@@ -20,7 +20,6 @@
     a { color: #81a5c4; text-decoration: none; }
     a:hover { color: #fff; text-decoration: underline; }
 
-    /* Barra superior */
     .steam-header-bar {
       width: 100%;
       background: linear-gradient(to bottom, #600000, #400000);
@@ -78,7 +77,6 @@
     .tab-content { display: none; }
     .tab-content.active { display: block; }
 
-    /* Estilos Blog */
     .blogpost { margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid #262626; }
     .blogpost:last-child { border-bottom: none; }
     .blogpost h1 { font-size: 20px; color: #e13b00; margin: 0 0 4px 0; font-weight: bold; }
@@ -90,7 +88,6 @@
     .blogpost p { line-height: 1.5; color: #c4c4c4; font-size: 14px; margin-bottom: 12px; }
     .blogpost ul { color: #c4c4c4; font-size: 13px; margin-top: 3px; padding-left: 20px; line-height: 1.5; }
 
-    /* Estilos Progreso / Próximamente */
     .progress-card { background: #0d0d0d; border: 1px solid #2a2a2a; border-left: 4px solid #e15b00; padding: 15px; margin-bottom: 15px; }
     .progress-card h3 { margin: 0 0 5px 0; color: #fff; font-size: 16px; }
     .progress-card p { margin: 0 0 10px 0; color: #aaa; font-size: 13px; line-height: 1.4; }
@@ -101,13 +98,11 @@
     .status-planned { background: #333; color: #aaa; }
     .status-completed { background: #1d6f23; color: #fff; }
 
-    /* Estilos Changelog */
     .changelog-item { background: #111; border: 1px solid #282828; padding: 15px; margin-bottom: 15px; }
     .changelog-item h3 { color: #e15b00; margin: 0 0 2px 0; font-size: 16px; }
     .changelog-item .changelog-date { color: #666; font-size: 12px; margin-bottom: 10px; }
     .changelog-item ul { margin: 0; padding-left: 20px; color: #ccc; font-size: 13px; line-height: 1.5; }
 
-    /* Estilos Galería / Capturas */
     .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
     .gallery-card { background: #0a0a0a; border: 1px solid #222; overflow: hidden; }
     .gallery-card img { width: 100%; height: 140px; object-fit: cover; display: block; transition: transform 0.2s ease; cursor: pointer; }
@@ -116,7 +111,6 @@
     .gallery-card .gallery-info h4 { margin: 0; color: #ddd; font-size: 13px; }
     .gallery-card .gallery-info p { margin: 4px 0 0 0; color: #777; font-size: 11px; }
 
-    /* Estilos Descargas */
     .download-card { background: #111; border: 1px solid #2a2a2a; padding: 15px; margin-bottom: 15px; }
     .download-card h2 { color: #e15b00; font-size: 18px; margin: 0 0 6px 0; font-weight: bold; }
     .download-card p { color: #aaa; font-size: 13px; margin: 0 0 12px 0; line-height: 1.4; }
@@ -132,7 +126,6 @@
     }
     .download-link-btn:hover { background-color: #ff6a00; color: #fff; text-decoration: none; }
 
-    /* Galería de Blog */
     .steam-gallery {
       background: #000;
       border: 1px solid #2a2a2a;
@@ -150,7 +143,6 @@
     .thumb:hover { opacity: 0.8; }
     .thumb.active { opacity: 1; border-color: #67c1f5; }
 
-    /* Barra Lateral */
     .sideBox { margin-bottom: 25px; border-bottom: 1px solid #333; padding-bottom: 20px; }
     .sideBox:last-child { border-bottom: none; }
     .sideBox h1 { font-size: 16px; color: #e15b00; margin: 0 0 10px 0; }
@@ -253,188 +245,129 @@
 </div>
 
 <script>
-  let db = {
-    noticias: [],
-    progreso: [],
-    changelog: [],
-    galeria: [],
-    descargas: []
-  };
+  let db = { noticias: [], progreso: [], changelog: [], galeria: [], descargas: [] };
 
-  function switchMedia(element, targetDisplayId) {
-    document.getElementById(targetDisplayId).src = element.src;
-    const parentThumbnails = element.parentElement;
-    parentThumbnails.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
-    element.classList.add('active');
+  function switchMedia(el, displayId) {
+    document.getElementById(displayId).src = el.src;
+    el.parentElement.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
   }
 
-  /* Carga los datos dinámicos del sitio */
   async function cargarTodosLosJSON() {
     try {
-      const [rNoticias, rProgreso, rChangelog, rGaleria, rDescargas] = await Promise.all([
-        fetch('noticias.json').then(res => res.json()).catch(() => []),
-        fetch('progreso.json').then(res => res.json()).catch(() => []),
-        fetch('changelog.json').then(res => res.json()).catch(() => []),
-        fetch('galeria.json').then(res => res.json()).catch(() => []),
-        fetch('descargas.json').then(res => res.json()).catch(() => [])
-      ]);
-
-      db.noticias = rNoticias;
-      db.progreso = rProgreso;
-      db.changelog = rChangelog;
-      db.galeria = rGaleria;
-      db.descargas = rDescargas;
-
+      const endpoints = ['noticias', 'progreso', 'changelog', 'galeria', 'descargas'];
+      const res = await Promise.all(endpoints.map(ep => fetch(`${ep}.json`).then(r => r.json()).catch(() => [])));
+      
+      endpoints.forEach((ep, i) => db[ep] = res[i]);
       renderizarTodo(document.getElementById('langSelect').value);
-    } catch (error) {
-      console.error('Error cargando archivos JSON:', error);
+    } catch (err) {
+      console.error(err);
     }
   }
 
-  /* Renderizar Noticias */
   function renderNoticias(isEs) {
     const c = document.getElementById('Blog');
-    c.innerHTML = '';
-    db.noticias.forEach(item => {
+    c.innerHTML = db.noticias.map(item => {
       const t = isEs ? item.titulo_es : item.titulo_en;
       const f = isEs ? item.fecha_es : item.fecha_en;
       const body = isEs ? item.contenido_es : item.contenido_en;
 
-      let galeriaHTML = '';
-      if (item.imagenes && item.imagenes.length > 0) {
+      let galeria = '';
+      if (item.imagenes?.length) {
         const displayId = `mainDisplay_${item.id}`;
-        const thumbs = item.imagenes.map((imgUrl, i) => `
-          <img class="thumb ${i === 0 ? 'active' : ''}" src="${imgUrl}" onclick="switchMedia(this, '${displayId}')">
-        `).join('');
-        galeriaHTML = `
+        const thumbs = item.imagenes.map((img, i) => 
+          `<img class="thumb ${i === 0 ? 'active' : ''}" src="${img}" onclick="switchMedia(this, '${displayId}')">`
+        ).join('');
+
+        galeria = `
           <div class="steam-gallery">
             <div class="gallery-main"><img id="${displayId}" src="${item.imagenes[0]}"></div>
             <div class="gallery-thumbnails">${thumbs}</div>
-          </div>
-        `;
+          </div>`;
       }
 
-      c.innerHTML += `
+      return `
         <article class="blogpost">
           <h1><a href="#">${t}</a></h1>
           <h2>${f}</h2>
           <div>${body}</div>
-          ${galeriaHTML}
-        </article>
-      `;
-    });
+          ${galeria}
+        </article>`;
+    }).join('');
   }
 
-  /* Renderizar Progreso */
   function renderProgreso(isEs) {
     const c = document.getElementById('progreso');
-    c.innerHTML = '';
-    db.progreso.forEach(item => {
-      const t = isEs ? item.titulo_es : item.titulo_en;
-      const d = isEs ? item.descripcion_es : item.descripcion_en;
-      const st = isEs ? item.estado_texto_es : item.estado_texto_en;
-      const classMap = { 'in_progress': 'status-in-progress', 'planned': 'status-planned', 'completed': 'status-completed' };
-      const badgeClass = classMap[item.estado_clave] || 'status-planned';
+    const classMap = { 'in_progress': 'status-in-progress', 'planned': 'status-planned', 'completed': 'status-completed' };
 
-      c.innerHTML += `
-        <div class="progress-card">
-          <h3>${t}</h3>
-          <p>${d}</p>
-          <div class="progress-bar-bg">
-            <div class="progress-bar-fill" style="width: ${item.porcentaje}%;">${item.porcentaje}%</div>
-          </div>
-          <span class="status-badge ${badgeClass}">${st}</span>
+    c.innerHTML = db.progreso.map(item => `
+      <div class="progress-card">
+        <h3>${isEs ? item.titulo_es : item.titulo_en}</h3>
+        <p>${isEs ? item.descripcion_es : item.descripcion_en}</p>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" style="width: ${item.porcentaje}%;">${item.porcentaje}%</div>
         </div>
-      `;
-    });
+        <span class="status-badge ${classMap[item.estado_clave] || 'status-planned'}">${isEs ? item.estado_texto_es : item.estado_texto_en}</span>
+      </div>
+    `).join('');
   }
 
-  /* Renderizar Changelog */
   function renderChangelog(isEs) {
     const c = document.getElementById('changelog');
-    c.innerHTML = '';
-    db.changelog.forEach(item => {
-      const v = item.version;
-      const f = isEs ? item.fecha_es : item.fecha_en;
-      const cambios = isEs ? item.cambios_es : item.cambios_en;
-      const listHTML = cambios.map(li => `<li>${li}</li>`).join('');
-
-      c.innerHTML += `
-        <div class="changelog-item">
-          <h3>Versión / Parche: ${v}</h3>
-          <div class="changelog-date">${f}</div>
-          <ul>${listHTML}</ul>
-        </div>
-      `;
-    });
+    c.innerHTML = db.changelog.map(item => `
+      <div class="changelog-item">
+        <h3>Versión / Parche: ${item.version}</h3>
+        <div class="changelog-date">${isEs ? item.fecha_es : item.fecha_en}</div>
+        <ul>${(isEs ? item.cambios_es : item.cambios_en).map(li => `<li>${li}</li>`).join('')}</ul>
+      </div>
+    `).join('');
   }
 
-  /* Renderizar Galería */
   function renderGaleria(isEs) {
     const c = document.getElementById('galeria');
-    let gridHTML = '<div class="gallery-grid">';
-    db.galeria.forEach(item => {
-      const t = isEs ? item.titulo_es : item.titulo_en;
-      const desc = isEs ? item.descripcion_es : item.descripcion_en;
-      gridHTML += `
-        <div class="gallery-card">
-          <a href="${item.url_imagen}" target="_blank">
-            <img src="${item.url_imagen}" alt="${t}">
-          </a>
-          <div class="gallery-info">
-            <h4>${t}</h4>
-            <p>${desc}</p>
-          </div>
+    c.innerHTML = `<div class="gallery-grid">${db.galeria.map(item => `
+      <div class="gallery-card">
+        <a href="${item.url_imagen}" target="_blank">
+          <img src="${item.url_imagen}" alt="${isEs ? item.titulo_es : item.titulo_en}">
+        </a>
+        <div class="gallery-info">
+          <h4>${isEs ? item.titulo_es : item.titulo_en}</h4>
+          <p>${isEs ? item.descripcion_es : item.descripcion_en}</p>
         </div>
-      `;
-    });
-    gridHTML += '</div>';
-    c.innerHTML = gridHTML;
+      </div>
+    `).join('')}</div>`;
   }
 
-  /* Renderizar Descargas */
   function renderDescargas(isEs) {
     const c = document.getElementById('descarga');
-    c.innerHTML = '';
-    db.descargas.forEach(item => {
-      const t = isEs ? item.titulo_es : item.titulo_en;
-      const d = isEs ? item.descripcion_es : item.descripcion_en;
-      const btn = isEs ? item.boton_texto_es : item.boton_texto_en;
-
-      c.innerHTML += `
-        <div class="download-card">
-          <h2>${t}</h2>
-          <p>${d}</p>
-          <a href="${item.enlace}" target="_blank" class="download-link-btn">${btn}</a>
-        </div>
-      `;
-    });
+    c.innerHTML = db.descargas.map(item => `
+      <div class="download-card">
+        <h2>${isEs ? item.titulo_es : item.titulo_en}</h2>
+        <p>${isEs ? item.descripcion_es : item.descripcion_en}</p>
+        <a href="${item.enlace}" target="_blank" class="download-link-btn">${isEs ? item.boton_texto_es : item.boton_texto_en}</a>
+      </div>
+    `).join('');
   }
 
-  /* Carga el archivo del idioma correspondiente desde la carpeta resource/ */
   async function renderizarTodo(lang) {
-    const isEs = (lang === 'spanish');
+    const isEs = lang === 'spanish';
 
     try {
-      // Cargar archivo JSON tipo L4D (ej: resource/spanish.json)
       const res = await fetch(`resource/${lang}.json`);
       const langData = await res.json();
 
-      // Aplicar traducciones a los elementos con data-i18n
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (langData[key]) el.textContent = langData[key];
       });
     } catch (err) {
-      console.error(`Error cargando el archivo de idioma resource/${lang}.json:`, err);
+      console.error(err);
     }
 
-    // Visibilidad de elementos exclusivos en español
     document.querySelectorAll('.spanish-only').forEach(b => {
       b.style.display = isEs ? 'block' : 'none';
     });
 
-    // Pestañas dinámicas
     renderNoticias(isEs);
     renderProgreso(isEs);
     renderChangelog(isEs);
@@ -442,31 +375,22 @@
     renderDescargas(isEs);
   }
 
-  // Evento Selección de Idioma
-  document.getElementById('langSelect').addEventListener('change', (e) => {
-    renderizarTodo(e.target.value);
-  });
+  document.getElementById('langSelect').addEventListener('change', (e) => renderizarTodo(e.target.value));
 
-  // Evento Cambio de Pestañas
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const targetTab = btn.getAttribute('data-tab');
       document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      
       document.getElementById(targetTab).classList.add('active');
       btn.classList.add('active');
 
-      // Ocultar panel lateral en las pestañas "galeria" (Capturas) y "descarga" (Descargas)
       const rightContainer = document.getElementById('rightContainer');
-      if (targetTab === 'galeria' || targetTab === 'descarga') {
-        rightContainer.style.display = 'none';
-      } else {
-        rightContainer.style.display = 'block';
-      }
+      rightContainer.style.display = (targetTab === 'galeria' || targetTab === 'descarga') ? 'none' : 'block';
     });
   });
 
-  // Inicialización
   cargarTodosLosJSON();
 </script>
 
