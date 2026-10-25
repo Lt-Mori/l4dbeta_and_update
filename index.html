@@ -433,6 +433,185 @@
   });
 
   cargarTodosLosJSON();
+        
+//-------------
+//KROSK WAS HERE
+//-------------
+(function ()
+ {
+  const root = document.getElementById('tracker');
+  const T =
+  {
+    spanish:
+    {
+      filters: { all: 'Todos', open: 'Abiertos', fixed: 'Corregidos', closed: 'Cerrados' },
+      status: { open: 'Abierto', fixed: 'Corregido', closed: 'Cerrado' },
+      search: 'Buscar por título, categoría o reportero',
+      empty: 'Aún no hay reportes registrados.',
+      noMatch: 'Ningún reporte coincide con la búsqueda.',
+      error: 'No se pudo cargar el archivo',
+      source: 'Ver config.txt',
+      category: 'Categoría',
+      priority: 'Prioridad',
+      reporter: 'Reportado por'
+    },
+    english:
+    {
+      filters: { all: 'All', open: 'Open', fixed: 'Fixed', closed: 'Closed' },
+      status: { open: 'Open', fixed: 'Fixed', closed: 'Closed' },
+      search: 'Search by title, category or reporter',
+      empty: 'No reports have been logged yet.',
+      noMatch: 'No reports match the search.',
+      error: 'Could not load the file',
+      source: 'View config.txt',
+      category: 'Category',
+      priority: 'Priority',
+      reporter: 'Reported by'
+    }
+  };
+  const state = { kv: null, failed: false, filter: 'all', q: '' };
+        
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const tt = () => T[document.getElementById('langSelect').value === 'english' ? 'english' : 'spanish'];
+  const statusOf = b => String(b.status || 'open').toLowerCase();
+
+  function parseKV(text)
+  {
+    const tokens = [];
+    const re = /"((?:[^"\\]|\\.)*)"|\{|\}|\/\/[^\n]*|[^\s{}"]+/g;
+    let m;
+    while ((m = re.exec(text)) !== null)
+    {
+      const s = m[0];
+      if (s.slice(0, 2) === '//') continue;
+      if (s === '{' || s === '}') tokens.push({ t: s });
+      else tokens.push({ t: 's', v: m[1] !== undefined ? m[1].replace(/\\n/g, '\n').replace(/\\"/g, '"') : s });
+    }
+    let pos = 0;
+    function block()
+    {
+      const obj = {};
+      while (pos < tokens.length && tokens[pos].t !== '}')
+      {
+        const key = tokens[pos++];
+        if (key.t !== 's') continue;
+        const next = tokens[pos];
+        if (next && next.t === '{')
+        {
+          pos++;
+          obj[key.v] = block();
+          pos++;
+        } else if (next && next.t === 's')
+        {
+          obj[key.v] = next.v;
+          pos++;
+        }
+      }
+      return obj;
+    }
+    return block();
+  }
+        
+  function bugs()
+  {
+    const raw = state.kv && state.kv.bugs && typeof state.kv.bugs === 'object' ? state.kv.bugs : {};
+    return Object.keys(raw)
+      .filter(k => typeof raw[k] === 'object')
+      .map(k => Object.assign({ id: k }, raw[k]))
+      .sort((a, b) => (parseInt(b.id, 10) || 0) - (parseInt(a.id, 10) || 0));
+  }
+
+  function card(b)
+  {
+    const t = tt();
+    const st = statusOf(b);
+    const known = Object.prototype.hasOwnProperty.call(t.status, st);
+    const meta = [
+      b.category ? t.category + ': ' + b.category : '',
+      b.priority ? t.priority + ': ' + b.priority : '',
+      b.reporter ? t.reporter + ': ' + b.reporter : '',
+      b.date || ''
+    ].filter(Boolean).map(x => `<span>${esc(x)}</span>`).join('');
+    return `<article class="trk-item">
+      <div class="trk-item-head">
+        <span class="trk-id">#${esc(b.id)}</span>
+        <span class="trk-item-title">${esc(b.title || '-')}</span>
+        <span class="trk-badge${known ? ' trk-' + st : ''}">${esc(known ? t.status[st] : st)}</span>
+      </div>
+      ${meta ? `<div class="trk-meta">${meta}</div>` : ''}
+      ${b.description ? `<p class="trk-desc">${esc(b.description)}</p>` : ''}
+    </article>`;
+  }
+        
+  function list()
+  {
+    const t = tt();
+    const q = state.q.trim().toLowerCase();
+    const all = bugs();
+    const shown = all.filter(b => (state.filter === 'all' || statusOf(b) === state.filter) &&
+      (!q || [b.title, b.category, b.reporter, b.description].some(v => String(v || '').toLowerCase().indexOf(q) !== -1)));
+    const box = root.querySelector('.trk-list');
+    box.innerHTML = shown.length
+      ? shown.map(card).join('')
+      : `<p class="trk-empty">${esc(all.length ? t.noMatch : t.empty)}</p>`;
+  }
+        
+  function shell()
+  {
+    const t = tt();
+    const cfg = state.kv && state.kv.bugreporter && typeof state.kv.bugreporter === 'object' ? state.kv.bugreporter : {};
+    const path = /^[\w.\/-]+$/.test(cfg.config_file || '') ? cfg.config_file : 'bugsub/config.txt';
+    if (state.failed)
+    {
+      root.innerHTML = `<p class="trk-empty">${esc(t.error)}: ${esc(path)}</p>`;
+      return;
+    }
+    if (!state.kv) return;
+    const all = bugs();
+    const count = k => k === 'all' ? all.length : all.filter(b => statusOf(b) === k).length;
+    const filters = ['all', 'open', 'fixed', 'closed'].map(k =>
+      `<button type="button" class="trk-filter${state.filter === k ? ' active' : ''}" data-f="${k}">${esc(t.filters[k])} (${count(k)})</button>`
+    ).join('');
+    root.innerHTML = `
+      <div class="trk-head">
+        <h2 class="trk-title">${esc(cfg.database_server || 'tracker')}</h2>
+        <div class="trk-project">${esc(cfg.project_name || 'Left 4 Dead: The Rebirth')}</div>
+        <a class="trk-src" href="${esc(path)}" target="_blank">${esc(t.source)}</a>
+      </div>
+      <div class="trk-tools">
+        <div class="trk-filters">${filters}</div>
+        <input class="trk-search" type="search" aria-label="${esc(t.search)}" placeholder="${esc(t.search)}" value="${esc(state.q)}">
+      </div>
+      <div class="trk-list"></div>`;
+    root.querySelectorAll('.trk-filter').forEach(btn => btn.addEventListener('click', () =>
+            {
+      state.filter = btn.getAttribute('data-f');
+      root.querySelectorAll('.trk-filter').forEach(b => b.classList.toggle('active', b === btn));
+      list();
+    }));
+    root.querySelector('.trk-search').addEventListener('input', e =>
+            {
+      state.q = e.target.value;
+      list();
+    });
+    list();
+  }
+        
+  document.getElementById('langSelect').addEventListener('change', shell);
+  document.querySelector('.tab-btn[data-tab="tracker"]').addEventListener('click', () =>
+          {
+    document.getElementById('rightContainer').style.display = 'none';
+  });
+        
+  fetch('bugsub/config.txt', { cache: 'no-cache' })
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
+    .then(txt => { state.kv = parseKV(txt); shell(); })
+    .catch(() => { state.failed = true; shell(); });
+})();
+//-------------
+//KROSK LEAVES
+//-------------
+        
 </script>
 
 </body>
